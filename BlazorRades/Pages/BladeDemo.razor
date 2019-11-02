@@ -1,8 +1,9 @@
 ﻿@page "/BladeDemo"
 <h3>BladeDemo</h3>
 <br/>
-<div style="position:relative;flex-grow: 100">
-    <BladeContainer BladeInfos="@Bladeinfos" />
+<div style="position:relative;height:100%;flex-grow: 100">
+    <BladeContainer BladeInfos="@Bladeinfos">
+    </BladeContainer>
 </div>
 
 
@@ -19,6 +20,7 @@
         List<BladeInfo> blades = new List<BladeInfo>();
         blades.Add(new BladeInfo
         {
+            Id = "blade1",
             Title = "this Is My Title",
             SubTitle = "this is the sub-title",
             HeaderButtons = HeaderButtons.Close,

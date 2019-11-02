@@ -1,9 +1,9 @@
-﻿<blade-blade id="blade1" class="blade-blade-element">
+﻿<div id="@Id" class="blade-blade-element">
     <header>
         <div id="icon">@Icon</div>
         <h2 id="title">@Title</h2>
         <small id="sub-title">@SubTitle</small>
-        @if (HeadderButtons == HeaderButtons.Close)
+        @if (HeaderButtons == HeaderButtons.Close)
         {
             <button id="close">X</button>
         }
@@ -15,18 +15,21 @@
     </header>
     <div class="blade-command-bar-element">
         @CommandBars
-        @*<button slot="blade-buttons" onclick="document.getElementById('blade1').setAttribute('title', 'xyz');">➕ Add</button>*@
     </div>
-    <div id="content">
-        @Content
+    <div id="bladecontent">
+        <slot>
+            @Content
+        </slot>
         <slot>
             Hello World
         </slot>
     </div>
-</blade-blade>
+</div>
 
 
 @code {
+    [Parameter] public string Id{ get; set; }
+
     [Parameter] public string Icon { get; set; }
 
     [Parameter] public string IconPath { get; set; }
@@ -35,7 +38,7 @@
 
     [Parameter] public string SubTitle { get; set; }
 
-    [Parameter] public  HeaderButtons HeadderButtons { get; set; }
+    [Parameter] public  HeaderButtons HeaderButtons { get; set; }
 
     [Parameter] public RenderFragment CommandBars { get; set; }
 
