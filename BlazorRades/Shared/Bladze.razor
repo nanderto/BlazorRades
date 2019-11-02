@@ -1,0 +1,21 @@
+﻿<h3>Bladze</h3>
+
+@code {
+
+}
+<blade-blade id="blade1" class="blade-blade-element">
+    <header>
+        <div id="icon">🧪</div>
+        <h2 id="title">XYZ</h2>
+        <small id="sub-title">Default Directory</small>
+        <button id="close">X</button>
+    </header>
+    <div class="blade-command-bar-element">
+        <button slot="blade-buttons" onclick="document.getElementById('blade1').setAttribute('title', 'xyz');">➕ Add</button>
+    </div>
+    <div id="content">
+        <slot>
+            Hello World
+        </slot>
+    </div>
+</blade-blade>

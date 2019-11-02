@@ -1,10 +1,17 @@
 ﻿<h3>Blade</h3>
 
 @code {
-
+    List<Bladze> blades = new List<Bladze> { new Bladze(), new Bladze() };
 }
 <blade-host class="blade-host-element">
     <blade-stack id="stack1" class="blade-stack-element">
+        @foreach (var blade in blades)
+        {
+            <Bladze></Bladze>
+            RenderFragment renderFragment = (builder) => { builder.OpenComponent(0, blade.GetType()); builder.CloseComponent(); };
+            @renderFragment
+        }
+
         <blade-blade id="blade1" class="blade-blade-element">
             <header>
                 <div id="icon">🧪</div>
