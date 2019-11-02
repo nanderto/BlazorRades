@@ -1,11 +1,8 @@
-﻿@page "/"
-
-<h1>Hello, world!</h1>
-
-Welcome to your new app.
-
+﻿@page "/BladeDemo"
+<h3>BladeDemo</h3>
+<br/>
 <div style="position:relative;flex-grow: 100">
-    <BladeContainer BladeInfos="@Bladeinfos"/>
+    <BladeContainer BladeInfos="@Bladeinfos" />
 </div>
 
 
@@ -17,17 +14,17 @@ Welcome to your new app.
         Bladeinfos = GetBlades();
     }
 
-    public  List<BladeInfo>  GetBlades()
+    public List<BladeInfo> GetBlades()
     {
         List<BladeInfo> blades = new List<BladeInfo>();
         blades.Add(new BladeInfo
         {
             Title = "this Is My Title",
-            SubTitle= "this is the sub-title",
+            SubTitle = "this is the sub-title",
             HeaderButtons = HeaderButtons.Close,
             Icon = "🧪",
             IconPath = string.Empty,
-            SaveButtonPath=string.Empty
+            SaveButtonPath = string.Empty
 
         });
 

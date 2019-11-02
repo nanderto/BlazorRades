@@ -1,0 +1,22 @@
+﻿<h3>BladeContainer</h3>
+
+<blade-host class="blade-host-element">
+    <blade-stack id="stack1" class="blade-stack-element">
+        @foreach (var bladeInfo in BladeInfos)
+        {
+            <Blade Title=@bladeInfo.Title
+                   SubTitle="@bladeInfo.SubTitle"
+                   HeadderButtons="@bladeInfo.HeaderButtons"
+
+                   Icon="@bladeInfo.Icon"
+                   IconPath="@bladeInfo.IconPath"
+                   SaveButtonPath="@bladeInfo.SaveButtonPath">
+            </Blade>
+        }
+    </blade-stack>
+</blade-host>
+
+@code {
+    [Parameter] public List<BladeInfo> BladeInfos { get; set; }
+
+}
