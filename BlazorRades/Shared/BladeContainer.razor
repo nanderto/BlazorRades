@@ -1,0 +1,37 @@
+﻿<h3>BladeContainer</h3>
+
+<div class="blade-host-element">
+    <div id="stack1" class="blade-stack-element">
+        @foreach (var bladeInfo in BladeInfos)
+        {
+            <Blade Title=@bladeInfo.Title
+                   SubTitle="@bladeInfo.SubTitle"
+                   HeaderButtons="@bladeInfo.HeaderButtons"
+
+                   Icon="@bladeInfo.Icon"
+                   IconPath="@bladeInfo.IconPath"
+                   SaveButtonPath="@bladeInfo.SaveButtonPath">
+                <CommandBars>
+                    <button slot="blade-buttons" onclick="document.getElementById('blade1').setAttribute('title', 'xyz');">➕ Add</button>
+                </CommandBars>
+                <Content>
+                    <div>
+                        yada
+                        <br />
+                        yada
+                        <br />
+                        yada
+                        <br />
+                        yada
+                        <br />
+                    </div>
+                </Content>
+            </Blade>
+        }
+    </div>
+</div>
+
+@code {
+    [Parameter] public List<BladeInfo> BladeInfos { get; set; }
+
+}
