@@ -1,34 +1,48 @@
 ﻿<div id="@Id" class="blade-blade-element">
     <header>
-        <div id="icon">@Icon</div>
         <h2 id="title">@Title</h2>
         <small id="sub-title">@SubTitle</small>
-        @if (HeaderButtons == HeaderButtons.Close)
+
+        @if (!string.IsNullOrEmpty(Icon))
         {
-            <button id="close">X</button>
+            <div id="icon">@Icon</div>
         }
         else
         {
-            <button id="Save"><img src="@SaveButtonPath"/>Save</button>
-            <button id="close">X</button>
+            <img src="@IconPath" />
         }
+
+        @if (HeaderButtons == HeaderButtons.Close)
+        {
+            <button @onclick="CloseBlade" id="close">X</button>
+        }
+        else if (HeaderButtons == HeaderButtons.SaveAndClose)
+        {
+            <button id="Save" @onclick="SaveBlade">S</button>
+            <button id="close" @onclick="CloseBlade">X</button>
+        }
+        else if (HeaderButtons == HeaderButtons.SaveCloseAndAdd)
+        {
+            <button id="Add" @onclick="AddBlade">➕</button>
+            <button id="Save" @onclick="SaveBlade">S</button>
+            <button id="close" @onclick="CloseBlade">X</button>
+        }
+
     </header>
     <div class="blade-command-bar-element">
         @CommandBars
     </div>
     <div id="bladecontent">
-        <slot>
-            @Content
-        </slot>
-        <slot>
-            Hello World
-        </slot>
+        <button type="button" class="btn btn-primary" @onclick="UpdateHeading">
+            Update heading
+        </button>
+        @Content
     </div>
 </div>
 
 
 @code {
-    [Parameter] public string Id{ get; set; }
+    [Parameter] public string Id { get; set; }
 
     [Parameter] public string Icon { get; set; }
 
@@ -38,7 +52,7 @@
 
     [Parameter] public string SubTitle { get; set; }
 
-    [Parameter] public  HeaderButtons HeaderButtons { get; set; }
+    [Parameter] public HeaderButtons HeaderButtons { get; set; }
 
     [Parameter] public RenderFragment CommandBars { get; set; }
 
@@ -46,4 +60,11 @@
 
     [Parameter] public RenderFragment Content { get; set; }
 
+    [Parameter] public EventCallback<MouseEventArgs> CloseBlade { get; set; }
+
+    [Parameter] public EventCallback<MouseEventArgs> AddBlade { get; set; }
+
+    public EventCallback<MouseEventArgs> SaveBlade { get; set; }
+
+    [Parameter] public EventCallback<MouseEventArgs> UpdateHeading { get; set; }
 }

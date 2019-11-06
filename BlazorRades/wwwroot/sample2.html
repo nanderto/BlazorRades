@@ -1,0 +1,95 @@
+﻿<html>
+
+<head>
+    <meta charset="utf-8" />
+    <link href="css/site.css" rel="stylesheet">
+    <link href="css/blades.css" rel="stylesheet" />
+</head>
+
+
+<body style="display:flex;flex-direction:column;align-items:stretch;flex-wrap: nowrap;margin:0px;height:100%">
+    <h2 style="height:50px">Hello World with Blades</h2>
+    Just some filer here.
+    <div style="position:relative;flex-grow: 100">
+        <div class="blade-host-element" id="host">
+            <div id="stack1" class="blade-stack-element">
+                <div id="@Id" class="blade-blade-element" style="min-width:400px">
+                    <header>
+                        <div id="icon">🧪</div>
+                        <h2 id="title">Title</h2>
+                        <small id="sub-title">Default</small>
+                        <button id="Add" @onclick="AddBlade">➕</button>
+                        <button id="Save" class="oi oi-plus" @onclick="SaveBlade">S</button>
+                        <button id="close" @onclick="CloseBlade">X</button>
+                    </header>
+                    <div class="blade-command-bar-element">
+                        <button @onclick="CloseBlade"> Close</button>
+                        <button class="blade-command-bar-element-button" @onclick="AddBlade2">➕ Add</button>
+                    </div>
+                    <div id="bladecontent">
+                        <button type="button" @onclick="UpdateHeading">
+                            Update heading
+                        </button>
+
+                            lorem ipsum 
+                    </div>
+                </div>
+                <div id="@Id" class="blade-blade-element">
+                    <header>
+                        <div id="icon">🧪</div>
+                        <h2 id="title">Subscriptions</h2>
+                        <small id="sub-title">Default</small>
+                        <button id="close" @onclick="CloseBlade">X</button>
+                    </header>
+                    <div class="blade-command-bar-element">
+                        <button slot="blade-buttons" onclick="parentElement.close()">👍 Go Away</button>
+                        <button slot="blade-buttons" onclick="document.getElementById('stack1').appendChild(document.getElementById('king-template').content.cloneNode(true));">➕ Open the 🤴</button>
+                    </div>
+                    <div id="bladecontent">
+                        <h2>asdf X</h2>
+                        <p>lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum</p>
+                        <p>lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum</p>
+                        <p>lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum</p>
+                        <p>lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum</p>
+                        <p>lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum</p>
+                        <p>lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum</p>
+                        <p>lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum</p>
+                    </div>
+                </div>
+
+                <div id="@Id" class="blade-blade-element" style="min-width:400px">
+                    <header>
+                        <div id="icon">🧪</div>
+                        <h2 id="title">Subscriptions</h2>
+                        <small id="sub-title">Default</small>
+                        <button id="close" @onclick="CloseBlade">X</button>
+                    </header>
+                    <div class="blade-command-bar-element">
+                        <button slot="blade-buttons" onclick="parentElement.close()">👍 Go Away</button>
+                        <button slot="blade-buttons" onclick="document.getElementById('stack1').appendChild(document.getElementById('king-template').content.cloneNode(true));">➕ Open the 🤴</button>
+                    </div>
+                    <div id="bladecontent">
+                        <h2>asdf X</h2>
+                        <p>lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum</p>
+                        <p>lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum</p>
+                        <p>lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum</p>
+                        <p>lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum</p>
+                        <p>lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum</p>
+                        <p>lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum</p>
+                        <p>lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<template id="king-template">
+    <blade-blade title="King of Queens" sub-title="Character" icon="🤴" id="kingblade" style="min-width:400px">
+        <button slot="blade-buttons" onclick="document.getElementById('kingblade').remove()">👍 Go</button>
+        <button slot="blade-buttons" onclick="document.getElementById('kingblade').remove()">🌍 WWW</button>
+        <button slot="blade-buttons" onclick="document.getElementById('kingblade').remove()">🌍 WWW</button>
+        All Hello Worlds to the King
+    </blade-blade>
+</template>
+
+</html>

@@ -1,11 +1,30 @@
 ﻿@page "/BladeDemo"
 <h3>BladeDemo</h3>
-<br/>
+<br />
+<div class="flex-container">
+
 <div style="position:relative;height:100%;flex-grow: 100">
     <BladeContainer BladeInfos="@Bladeinfos">
+        <CommandBars>
+            <button slot="blade-buttons" @onclick="CloseBlade"> Close</button>
+            <button slot="blade-buttons" @onclick="AddBlade2">➕ Add</button>
+        </CommandBars>
+        <Content>
+            <div>
+                THis is the initial content of Blade1
+                <br />
+                yada
+                <br />
+                yada
+                <br />
+                yada
+                <br />
+            </div>
+        </Content>
+
     </BladeContainer>
 </div>
-
+    </div>
 
 @code  {
     List<BladeInfo> Bladeinfos;
@@ -15,21 +34,46 @@
         Bladeinfos = GetBlades();
     }
 
+
     public List<BladeInfo> GetBlades()
     {
         List<BladeInfo> blades = new List<BladeInfo>();
         blades.Add(new BladeInfo
         {
             Id = "blade1",
-            Title = "this Is My Title",
+            Title = "Blade1 Is My Title",
             SubTitle = "this is the sub-title",
+            HeaderButtons = HeaderButtons.SaveAndClose,
+            Icon = "🧪",
+            IconPath = string.Empty,
+            SaveButtonPath = string.Empty,
+        });
+
+        return blades;
+    }
+
+    private string messageText;
+
+    private void AddBlade2(MouseEventArgs e)
+    {
+        messageText = "Trying to add a new blade2222";
+        Bladeinfos.Add(new BladeInfo
+        {
+            Id = "blade23",
+            Title = "this Is My23 Title22",
+            SubTitle = "this is the23 sub-title22",
             HeaderButtons = HeaderButtons.Close,
             Icon = "🧪",
             IconPath = string.Empty,
             SaveButtonPath = string.Empty
 
         });
+    }
 
-        return blades;
+    public void CloseBlade(MouseEventArgs e)
+    {
+        messageText = "Blaze a new trail with Blazor!";
+
+        //Bladeinfos.Remove(BladeInfos[0]);
     }
 }

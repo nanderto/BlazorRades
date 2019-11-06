@@ -1,0 +1,35 @@
+﻿@page "/DemoBlades"
+@using System.Net.Http
+@using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Components.Authorization
+@using Microsoft.AspNetCore.Components.Forms
+@using Microsoft.AspNetCore.Components.Routing
+@using Microsoft.AspNetCore.Components.Web
+@using Microsoft.JSInterop
+@using BlazorRades
+@using BlazorRades.Shared
+@model BlazorRades.Pages.DemoBladesModel
+@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BlazorRades</title>
+    <base href="~/" />
+    <link href="css/blades.css" rel="stylesheet" />
+</head>
+<body style="display:flex;flex-direction:column;align-items:stretch;flex-wrap: nowrap;margin:0px;height:100%">
+   
+    <slot>
+        <form>
+            <button onclick="DemoBladesModel.AddBlade">add</button>
+        </form>
+    </slot>
+    <component>@(await Html.RenderComponentAsync<BladeContainer>(RenderMode.Server));</component>
+
+    <script src="_framework/blazor.server.js"></script>
+</body>
+</html>

@@ -10,6 +10,7 @@ namespace BlazorRades
     {
         Close,
         SaveAndClose,
+        SaveCloseAndAdd,
     }
     public class BladeInfo
     {
