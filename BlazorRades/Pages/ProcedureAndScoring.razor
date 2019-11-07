@@ -1,4 +1,106 @@
-﻿@inherits Blade
-@code {
+﻿@inject IProcedureAndScoringViewModel ProcedureAndScoringViewModel
+<Blade Id=@Id
+        BladeInfos=@BladeInfos
+        Type="@Type"                                     
+        Order="@Order"
+        Title=@Title
+        SubTitle="@SubTitle"
+        HeaderButtons=HeaderButtons.Close
+        Icon="@Icon"
+        IconPath="@IconPath"
+        SaveButtonPath="@SaveButtonPath"
+        AddBlade="@AddBlade"
+       ReFreshRequested="@ReFreshRequested">
+    <TopCommandBars>
+        @TopCommandBars
+        <button slot="blade-buttons" @onclick="CloseBlade"> Close</button>
+        <button slot="blade-buttons" @onclick="AddBlade">➕ Add</button>
+    </TopCommandBars>
+    <Content>
+        @Content
+        <p>
+            <h4>Select your Procedure</h4>
+            <br />
+            the blade Id is @Id
+        </p>
 
+        <select id="Procedure" @bind="ProcedureAndScoringViewModel.Procedure">
+            <option>Acceptance</option>
+            <option>Prep</option>
+            <option>Finish</option>
+        </select>
+        <br />
+        <label>Anatomical Form</label>
+        <input id="AnatomicalForm" type="radio" value="1" />
+        <input id="AnatomicalForm" type="radio" value="2" />
+        <input id="AnatomicalForm" type="radio" value="3" />
+        <input id="AnatomicalForm" type="radio" value="4" />
+        <input id="AnatomicalForm" type="radio" value="5" />
+        <br />
+        <label>Anatomical Form</label>
+        <input id="Margins" type="radio" value="1" />
+        <input id="Margins" type="radio" value="2" />
+        <input id="Margins" type="radio" value="3" />
+        <input id="Margins" type="radio" value="4" />
+        <input id="Margins" type="radio" value="5" />
+        <br />
+        <label>Finish, Function and Damage</label>
+        <input id="Finish" type="radio" value="1" />
+        <input id="Finish" type="radio" value="2" />
+        <input id="Finish" type="radio" value="3" />
+        <input id="Finish" type="radio" value="4" />
+        <input id="Finish" type="radio" value="5" />
+        <br/>
+
+        <input id="Margins" type="radio" />
+        <input id="Finish" type="radio" />
+    </Content>
+    <BottomCommandBars>
+        <button @onclick="SaveProcedureAndScoring">Save</button>
+    </BottomCommandBars>
+</Blade>
+
+@code {
+    [Parameter] public List<BladeInfo> BladeInfos { get; set; }
+
+    [Parameter] public Type Type { get; set; }
+
+    [Parameter] public int Order { get; set; }
+
+    [Parameter] public string Id { get; set; }
+
+    [Parameter] public string Icon { get; set; }
+
+    [Parameter] public string IconPath { get; set; }
+
+    [Parameter] public string Title { get; set; } = "Procedure And Scoring";
+
+    [Parameter] public string SubTitle { get; set; }
+
+    [Parameter] public HeaderButtons HeaderButtons { get; set; }
+
+    [Parameter] public RenderFragment TopCommandBars { get; set; }
+
+    [Parameter] public RenderFragment BottomCommandBars { get; set; }
+
+    [Parameter] public string SaveButtonPath { get; set; }
+
+    [Parameter] public RenderFragment Content { get; set; }
+
+    [Parameter] public EventCallback<MouseEventArgs> CloseBlade { get; set; }
+
+    [Parameter] public EventCallback<MouseEventArgs> AddBlade { get; set; }
+
+    [Parameter] public EventCallback<MouseEventArgs> SaveBlade { get; set; }
+
+    [Parameter] public Dictionary<string, EventCallback<MouseEventArgs>> CallBackCollection { get; set; }
+
+    [Parameter] public EventCallback<string> ReFreshRequested { get; set; }
+
+    public EventCallback<MouseEventArgs> Update;
+
+    public async void SaveProcedureAndScoring()
+    {
+        var a = ProcedureAndScoringViewModel.Procedure;
+    }
 }

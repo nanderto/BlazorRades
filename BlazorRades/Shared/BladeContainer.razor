@@ -1,27 +1,52 @@
-﻿<h3>BladeContainer</h3>
+﻿@using BlazorRades.Pages;
+
+<h3>BladeContainer</h3>
 <p><b>@messageText</b></p>
 @*<div class="flex-container">
     <div style="display:inline-flex;position:relative;flex-grow: 100">*@
         <div class="blade-host-element">
             <div id="stack1" class="blade-stack-element">
-                @foreach (var bladeInfo in BladeInfos)
+                @foreach (var bladeInfo in BladeInfos.OrderBy(bi => bi.Order))
                 {
-                    <Blade Title=@bladeInfo.Title
-                           SubTitle="@bladeInfo.SubTitle"
-                           HeaderButtons="@bladeInfo.HeaderButtons"
-                           Icon="@bladeInfo.Icon"
-                           IconPath="@bladeInfo.IconPath"
-                           SaveButtonPath="@bladeInfo.SaveButtonPath"
-                           CloseBlade="@CloseBlade"
-                           AddBlade="@AddBlade">
-                        <CommandBars>
-                            @bladeInfo.CommandBars
-                        </CommandBars>
-                        <Content>
-                            @bladeInfo.Content
-                        </Content>
-                    </Blade>
+                    if (bladeInfo.Type == typeof(ProcedureAndScoring))
+                    {
+                        <ProcedureAndScoring BladeInfos="@BladeInfos"
+                                Id="@bladeInfo.Id"
+                                Type="@bladeInfo.Type"
+                                Order="@bladeInfo.Order"                                
+                                ReFreshRequested="@ReFreshRequested">
+                        </ProcedureAndScoring>
+                    }
+                    else
+                    {
+                        <Blade BladeInfos="@BladeInfos"
+                                Id="@bladeInfo.Id"
+                                Type="@bladeInfo.Type"
+                                Order="@bladeInfo.Order"
+                                Title=@bladeInfo.Title
+                                SubTitle="@bladeInfo.SubTitle"
+                                HeaderButtons="@bladeInfo.HeaderButtons"
+                                Icon="@bladeInfo.Icon"
+                                IconPath="@bladeInfo.IconPath"
+                                SaveButtonPath="@bladeInfo.SaveButtonPath"
+                                AddBlade="@AddBlade"
+                                ReFreshRequested="@ReFreshRequested">
+                            <TopCommandBars>
+                                @bladeInfo.CommandBars
+                            </TopCommandBars>
+                            <Content>
+                                @bladeInfo.Content
+                                <button type="button" class="btn btn-primary" @onclick="UpdateHeading">
+                                    Update heading
+                                </button>
+                                <p>
+                                    <h4>The Id of thi Blade is @bladeInfo.Id</h4>
+                                </p>
+                            </Content>
+                        </Blade>
+                    }
                 }
+
             </div>
         </div>
     @*</div>*@
@@ -96,6 +121,8 @@
 
         private RenderFragment content;
 
+        public void UpdateHeading (MouseEventArgs e)
+        { }
 
         private string messageText;
 
@@ -146,4 +173,9 @@
             //BladeInfos.Remove(BladeInfos[0]);
         }
 
+        public void ReFreshRequested(string Id)
+        {
+            BladeInfos.Remove(this.BladeInfos.First(bi => bi.Id == Id));
+            StateHasChanged();
+        }
     }

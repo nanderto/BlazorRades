@@ -1,4 +1,4 @@
-﻿<div id="@Id" class="blade-blade-element">
+﻿<div id="@Id" class="blade-blade-element" ref="BlazorRade">
     <header>
         <h2 id="title">@Title</h2>
         <small id="sub-title">@SubTitle</small>
@@ -30,18 +30,25 @@
 
     </header>
     <div class="blade-command-bar-element">
-        @CommandBars
+        @TopCommandBars
     </div>
     <div id="bladecontent">
-        <button type="button" class="btn btn-primary" @onclick="UpdateHeading">
-            Update heading
-        </button>
         @Content
+    </div>
+    <div class="blade-command-bar-element">
+        @BottomCommandBars
     </div>
 </div>
 
 
 @code {
+
+    [Parameter] public List<BladeInfo> BladeInfos { get; set; }
+
+    [Parameter] public Type Type { get; set; }
+
+    [Parameter] public int Order { get; set; }
+
     [Parameter] public string Id { get; set; }
 
     [Parameter] public string Icon { get; set; }
@@ -54,17 +61,26 @@
 
     [Parameter] public HeaderButtons HeaderButtons { get; set; }
 
-    [Parameter] public RenderFragment CommandBars { get; set; }
+    [Parameter] public RenderFragment TopCommandBars { get; set; }
+
+    [Parameter] public RenderFragment BottomCommandBars { get; set; }
 
     [Parameter] public string SaveButtonPath { get; set; }
 
     [Parameter] public RenderFragment Content { get; set; }
 
-    [Parameter] public EventCallback<MouseEventArgs> CloseBlade { get; set; }
-
     [Parameter] public EventCallback<MouseEventArgs> AddBlade { get; set; }
 
-    public EventCallback<MouseEventArgs> SaveBlade { get; set; }
+    [Parameter] public EventCallback<MouseEventArgs> SaveBlade { get; set; }
 
-    [Parameter] public EventCallback<MouseEventArgs> UpdateHeading { get; set; }
+    [Parameter] public Dictionary<string, EventCallback<MouseEventArgs>> CallBackCollection { get; set; }
+
+    [Parameter] public EventCallback<string> ReFreshRequested { get; set; }
+
+    ElementReference BlazorRade;
+
+    protected async void CloseBlade()
+    {
+        await ReFreshRequested.InvokeAsync(Id);
+    }
 }

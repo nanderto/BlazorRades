@@ -14,7 +14,11 @@ namespace BlazorRades
     }
     public class BladeInfo
     {
+        public int Order { get; set; }
         public string Id { get; set; }
+
+        public Type Type { get; set; }
+
         public string Icon { get; set; }
 
         public string IconPath { get; set; }

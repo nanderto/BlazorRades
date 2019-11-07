@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace BlazorRades
 {
+
     public class BladeHost : ComponentBase
     {
         public IEnumerable<Blaze> Blades { get; private set; }

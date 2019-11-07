@@ -1,10 +1,10 @@
 ﻿@page "/BladeDemo"
 <h3>BladeDemo</h3>
 <br />
+<h4>@messageText</h4>
 <div class="flex-container">
-
 <div style="position:relative;height:100%;flex-grow: 100">
-    <BladeContainer BladeInfos="@Bladeinfos">
+    <BladeContainer BladeInfos="@bladeInfos">
         <CommandBars>
             <button slot="blade-buttons" @onclick="CloseBlade"> Close</button>
             <button slot="blade-buttons" @onclick="AddBlade2">➕ Add</button>
@@ -27,11 +27,11 @@
     </div>
 
 @code  {
-    List<BladeInfo> Bladeinfos;
+    List<BladeInfo> bladeInfos;
 
     protected override void OnInitialized()
     {
-        Bladeinfos = GetBlades();
+        bladeInfos = GetBlades();
     }
 
 
@@ -41,12 +41,14 @@
         blades.Add(new BladeInfo
         {
             Id = "blade1",
-            Title = "Blade1 Is My Title",
-            SubTitle = "this is the sub-title",
-            HeaderButtons = HeaderButtons.SaveAndClose,
+            Type= typeof(Blade),
+            Order = 1,
+            Title = "this Is Blade1",
+            SubTitle = "it is a generic Blade",
+            HeaderButtons = HeaderButtons.Close,
             Icon = "🧪",
             IconPath = string.Empty,
-            SaveButtonPath = string.Empty,
+            SaveButtonPath = string.Empty
         });
 
         return blades;
@@ -56,17 +58,15 @@
 
     private void AddBlade2(MouseEventArgs e)
     {
-        messageText = "Trying to add a new blade2222";
-        Bladeinfos.Add(new BladeInfo
-        {
-            Id = "blade23",
-            Title = "this Is My23 Title22",
-            SubTitle = "this is the23 sub-title22",
-            HeaderButtons = HeaderButtons.Close,
-            Icon = "🧪",
-            IconPath = string.Empty,
-            SaveButtonPath = string.Empty
+        messageText = "Trying to add a new Procedure and scoring blade";
 
+        int currentCount = bladeInfos.Count;
+        int LastInOrder = bladeInfos[currentCount - 1].Order;
+        bladeInfos.Add(new BladeInfo
+        {
+            Id = $"blade{LastInOrder + 1}",
+            Type= typeof(ProcedureAndScoring),
+            Order = LastInOrder + 1,
         });
     }
 
