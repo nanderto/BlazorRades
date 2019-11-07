@@ -5,34 +5,3 @@
 Welcome to your new app.
 
 
-<div style="position:relative;flex-grow: 100">
-    @*<BladeHost/>*@
-    <BladeContainer BladeInfos="@Bladeinfos"/>
-</div>
-
-
-@code  {
-    List<BladeInfo> Bladeinfos;
-
-    protected override void OnInitialized()
-    {
-        Bladeinfos = GetBlades();
-    }
-
-    public  List<BladeInfo>  GetBlades()
-    {
-        List<BladeInfo> blades = new List<BladeInfo>();
-        blades.Add(new BladeInfo
-        {
-            Title = "this Is My Title",
-            SubTitle= "this is the sub-title",
-            HeaderButtons = HeaderButtons.Close,
-            Icon = "🧪",
-            IconPath = string.Empty,
-            SaveButtonPath=string.Empty
-
-        });
-
-        return blades;
-    }
-}

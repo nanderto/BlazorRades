@@ -30,6 +30,7 @@ namespace BlazorRades
             services.AddServerSideBlazor();
             services.AddSingleton<WeatherForecastService>();
             services.AddSingleton<BlazorRades.IProcedureAndScoringViewModel, BlazorRades.ProcedureAndScoringViewModel>();
+            services.AddTransient<ICaseServices, CaseServices>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

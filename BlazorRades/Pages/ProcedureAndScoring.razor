@@ -5,7 +5,7 @@
         Order="@Order"
         Title=@Title
         SubTitle="@SubTitle"
-        HeaderButtons=HeaderButtons.Close
+        HeaderButtons=HeaderButtons.SaveAndClose
         Icon="@Icon"
         IconPath="@IconPath"
         SaveButtonPath="@SaveButtonPath"
@@ -13,8 +13,8 @@
        ReFreshRequested="@ReFreshRequested">
     <TopCommandBars>
         @TopCommandBars
-        <button slot="blade-buttons" @onclick="CloseBlade"> Close</button>
-        <button slot="blade-buttons" @onclick="AddBlade">➕ Add</button>
+        <button class="blade-command-bar-element-button" @onclick="CloseBlade"> Close</button>
+        <button class="blade-command-bar-element-button" @onclick="AddBlade">➕ Add</button>
     </TopCommandBars>
     <Content>
         @Content
@@ -25,9 +25,9 @@
         </p>
 
         <select id="Procedure" @bind="ProcedureAndScoringViewModel.Procedure">
-            <option>Acceptance</option>
-            <option>Prep</option>
-            <option>Finish</option>
+            <option value="1">Acceptance</option>
+            <option value="2">Prep</option>
+            <option value="3">Finish</option>
         </select>
         <br />
         <label>Anatomical Form</label>
@@ -37,7 +37,7 @@
         <input id="AnatomicalForm" type="radio" value="4" />
         <input id="AnatomicalForm" type="radio" value="5" />
         <br />
-        <label>Anatomical Form</label>
+        <label>Margins</label>
         <input id="Margins" type="radio" value="1" />
         <input id="Margins" type="radio" value="2" />
         <input id="Margins" type="radio" value="3" />
@@ -51,12 +51,9 @@
         <input id="Finish" type="radio" value="4" />
         <input id="Finish" type="radio" value="5" />
         <br/>
-
-        <input id="Margins" type="radio" />
-        <input id="Finish" type="radio" />
     </Content>
     <BottomCommandBars>
-        <button @onclick="SaveProcedureAndScoring">Save</button>
+        <button class="blade-command-bar-element-button" @onclick="ProcedureAndScoringViewModel.SaveBlade" >Save <i class="fa fa-floppy-o"></i></button>
     </BottomCommandBars>
 </Blade>
 
@@ -102,5 +99,6 @@
     public async void SaveProcedureAndScoring()
     {
         var a = ProcedureAndScoringViewModel.Procedure;
+
     }
 }

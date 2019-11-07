@@ -14,18 +14,18 @@
 
         @if (HeaderButtons == HeaderButtons.Close)
         {
-            <button @onclick="CloseBlade" id="close">X</button>
+            <button class="blade-command-bar-element-button" @onclick="CloseBlade" id="close">X</button>
         }
         else if (HeaderButtons == HeaderButtons.SaveAndClose)
         {
-            <button id="Save" @onclick="SaveBlade">S</button>
-            <button id="close" @onclick="CloseBlade">X</button>
+            <button class="blade-command-bar-element-button" id="Save" @onclick="SaveBlade"><i class="fa fa-floppy-o"></i></button>
+            <button class="blade-command-bar-element-button" id="close" @onclick="CloseBlade">X</button>
         }
         else if (HeaderButtons == HeaderButtons.SaveCloseAndAdd)
         {
-            <button id="Add" @onclick="AddBlade">➕</button>
-            <button id="Save" @onclick="SaveBlade">S</button>
-            <button id="close" @onclick="CloseBlade">X</button>
+            <button class="blade-command-bar-element-button" id="Add" @onclick="AddBlade">➕</button>
+            <button class="blade-command-bar-element-button" id="Save" @onclick="SaveBlade"><i class="fa fa-floppy-o"></i></button>
+            <button class="blade-command-bar-element-button" id="close" @onclick="CloseBlade">X</button>
         }
 
     </header>
