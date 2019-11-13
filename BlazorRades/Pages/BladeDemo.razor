@@ -6,8 +6,8 @@
 <div style="position:relative;height:100%;flex-grow: 100">
     <BladeContainer BladeInfos="@bladeInfos">
         <CommandBars>
-            <button slot="blade-buttons" @onclick="CloseBlade"> Close</button>
-            <button slot="blade-buttons" @onclick="AddBlade2">➕ Add</button>
+            <button class="blade-command-bar-element-button" @onclick="CloseBlade"> Close</button>
+            <button class="blade-command-bar-element-button" @onclick="AddBlade2">➕ Add</button>
         </CommandBars>
         <Content>
             <div>
@@ -31,11 +31,11 @@
 
     protected override void OnInitialized()
     {
-        bladeInfos = GetBlades();
+        bladeInfos = GetBladeOne();
     }
 
 
-    public List<BladeInfo> GetBlades()
+    public List<BladeInfo> GetBladeOne()
     {
         List<BladeInfo> blades = new List<BladeInfo>();
         blades.Add(new BladeInfo

@@ -1,31 +1,34 @@
 ﻿<div id="@Id" class="blade-blade-element" ref="BlazorRade">
     <header>
         <h2 id="title">@Title</h2>
-        <small id="sub-title">@SubTitle</small>
+        @if (!string.IsNullOrEmpty(SubTitle))
+        {
+            <small id="sub-title">@SubTitle</small>
+        }
 
         @if (!string.IsNullOrEmpty(Icon))
         {
             <div id="icon">@Icon</div>
         }
-        else
+        else if (!string.IsNullOrEmpty(IconPath))
         {
-            <img src="@IconPath" />
+            <div><img src="@IconPath" /></div>
         }
 
         @if (HeaderButtons == HeaderButtons.Close)
         {
-            <button @onclick="CloseBlade" id="close">X</button>
+            <button class="blade-command-bar-element-button" @onclick="() => DeleteThisBlade.InvokeAsync(this.Id)" id="close">X</button>
         }
         else if (HeaderButtons == HeaderButtons.SaveAndClose)
         {
-            <button id="Save" @onclick="SaveBlade">S</button>
-            <button id="close" @onclick="CloseBlade">X</button>
+            <button class="blade-command-bar-element-button" id="Save" @onclick="() => SaveBlade.InvokeAsync(this.Id)"><i class="fa fa-floppy-o"></i></button>
+            <button class="blade-command-bar-element-button" id="close" @onclick="() => DeleteThisBlade.InvokeAsync(this.Id)">X</button>
         }
         else if (HeaderButtons == HeaderButtons.SaveCloseAndAdd)
         {
-            <button id="Add" @onclick="AddBlade">➕</button>
-            <button id="Save" @onclick="SaveBlade">S</button>
-            <button id="close" @onclick="CloseBlade">X</button>
+            <button class="blade-command-bar-element-button" id="Add" @onclick="() => AddBlade.InvokeAsync(this.BladeTypeToAdd)">➕</button>
+            <button class="blade-command-bar-element-button" id="Save" @onclick="() => SaveBlade.InvokeAsync(this.Id)"><i class="fa fa-floppy-o"></i></button>
+            <button class="blade-command-bar-element-button" id="close" @onclick="() => DeleteThisBlade.InvokeAsync(this.Id)">X</button>
         }
 
     </header>
@@ -67,20 +70,21 @@
 
     [Parameter] public string SaveButtonPath { get; set; }
 
+    [Parameter] public string CloseButtonPath { get; set; }
+
     [Parameter] public RenderFragment Content { get; set; }
 
-    [Parameter] public EventCallback<MouseEventArgs> AddBlade { get; set; }
+    [Parameter] public EventCallback<string> AddBlade { get; set; }
 
-    [Parameter] public EventCallback<MouseEventArgs> SaveBlade { get; set; }
+    [Parameter] public string BladeTypeToAdd { get; set; }
 
-    [Parameter] public Dictionary<string, EventCallback<MouseEventArgs>> CallBackCollection { get; set; }
+    [Parameter] public EventCallback<string> SaveBlade { get; set; }
+
+    //[Parameter] public Dictionary<string, EventCallback<MouseEventArgs>> CallBackCollection { get; set; }
 
     [Parameter] public EventCallback<string> ReFreshRequested { get; set; }
 
-    ElementReference BlazorRade;
+    [Parameter] public EventCallback<string> DeleteThisBlade { get; set; }
 
-    protected async void CloseBlade()
-    {
-        await ReFreshRequested.InvokeAsync(Id);
-    }
+    ElementReference BlazorRade;
 }
