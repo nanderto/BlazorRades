@@ -14,7 +14,7 @@
                                 Id="@bladeInfo.Id"
                                 Type="@bladeInfo.Type"
                                 Order="@bladeInfo.Order"                                
-                                ReFreshRequested="@ReFreshRequested">
+                                DeleteThisBlade="@DeleteThisBlade">
                         </ProcedureAndScoring>
                     }
                     else
@@ -30,6 +30,7 @@
                                 IconPath="@bladeInfo.IconPath"
                                 SaveButtonPath="@bladeInfo.SaveButtonPath"
                                 AddBlade="@AddBlade"
+                                DeleteThisBlade="@DeleteThisBlade"
                                 ReFreshRequested="@ReFreshRequested">
                             <TopCommandBars>
                                 @bladeInfo.CommandBars
@@ -131,7 +132,7 @@
             messageText = "Blaze a new trail with Blazor!";
         }
 
-        private void AddBlade(MouseEventArgs e)
+        private void AddBlade(string bladeType)
         {
             messageText = "Trying to add a new blade";
 
@@ -173,9 +174,15 @@
             //BladeInfos.Remove(BladeInfos[0]);
         }
 
-        public void ReFreshRequested(string Id)
+        public void DeleteThisBlade(string Id)
         {
             BladeInfos.Remove(this.BladeInfos.First(bi => bi.Id == Id));
             StateHasChanged();
         }
+
+        public void ReFreshRequested(string Id)
+        {
+            StateHasChanged();
+        }
+
     }

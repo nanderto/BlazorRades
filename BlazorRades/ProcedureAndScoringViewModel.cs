@@ -4,54 +4,63 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace BlazorRades
 {
-    //class Command : ICommand
-    //{
-    //    public event EventHandler CanExecuteChanged;
-
-    //    private Action action;
-
-    //    public Command(Action action)
-    //    {
-    //        this.action = action;
-    //    }
-
-    //    public bool CanExecute(object parameter)
-    //    {
-    //        return true;
-    //    }
-
-    //    public void Execute(object parameter)
-    //    {
-    //        action.Invoke();
-    //    }
-    //}
-
     public interface IProcedureAndScoringViewModel
     {
-        void SaveBlade();
+        Task SaveBladeAsync();
 
+        [Required]
         int Procedure { get; set; }
+
+        int OutlineandExtension { get; set; }
+
+        int OperativeEnvironment { get; set; }
+
+        int InternalForm { get; set; }
+
+        int AnatomicalForm { get; set; }
+
+        int Margins { get; set; }
+
+        int Finish { get; set; }
     }
 
     public class ProcedureAndScoringViewModel : IProcedureAndScoringViewModel, INotifyPropertyChanged
     {
         [BindProperty]
         public int Procedure { get; set; }
-        
+
+        [BindProperty]
+        public int OutlineandExtension { get; set; }
+
+        public int OperativeEnvironment { get; set; }
+
+        public int InternalForm { get; set; }
+
+        public int AnatomicalForm { get; set; }
+
+        public int Margins { get; set; }
+
+        public int Finish { get; set; }
+
         public ICaseServices CaseServices { get; }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
         //public ICommand SaveCommand { get; set; }
 
-        public void SaveBlade()
+        public async Task SaveBladeAsync()
         {
+            if (Procedure == 0)
+            {
+                var pr = Procedure;
+            }
             var o = CaseServices.IAmWorking;
             var a = Procedure;
         }

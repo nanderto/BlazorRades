@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.29424.173
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorRades", "BlazorRades\BlazorRades.csproj", "{51047540-E99A-47DF-A1D0-4B49DE92A452}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorRadesTests", "BlazorRadesTests\BlazorRadesTests.csproj", "{EF448E7F-E6FF-46F8-BBC0-41C332B304A8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorRadesTests", "BlazorRadesTests\BlazorRadesTests.csproj", "{EF448E7F-E6FF-46F8-BBC0-41C332B304A8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
