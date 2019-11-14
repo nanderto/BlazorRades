@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using FluentValidation;
+using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -54,15 +55,13 @@ namespace BlazorRades
         public event PropertyChangedEventHandler PropertyChanged;
 
         //public ICommand SaveCommand { get; set; }
+        public ProcedureAndScoringViewModel()
+        {
+        }
 
         public async Task SaveBladeAsync()
         {
-            if (Procedure == 0)
-            {
-                var pr = Procedure;
-            }
-            var o = CaseServices.IAmWorking;
-            var a = Procedure;
+            await this.CaseServices.SaveAsync(this);
         }
 
         public ProcedureAndScoringViewModel(ICaseServices caseServices)
@@ -71,4 +70,22 @@ namespace BlazorRades
             //this.SaveCommand = new Command(Save);
         }
     }
+
+    public class ProcedureAndScoringViewModelValidator : AbstractValidator<ProcedureAndScoringViewModel>
+    {
+        public ProcedureAndScoringViewModelValidator()
+        {
+            RuleFor(p => p.Procedure).InclusiveBetween(1, 3).WithMessage("You must choose a Procedure Category");
+            
+            RuleFor(p => p.OutlineandExtension).InclusiveBetween(1, 5).When(p => p.Procedure == 2).WithMessage("You must provide a rating for Outline and Extension");
+            RuleFor(p => p.InternalForm).InclusiveBetween(1, 5).When(p => p.Procedure == 2).WithMessage("You must provide a rating fo Internal Form");
+            RuleFor(p => p.OperativeEnvironment).InclusiveBetween(1, 5).When(p => p.Procedure == 2).WithMessage("You must provide a rating for Operative Environment");
+            RuleFor(p => p.AnatomicalForm).InclusiveBetween(1, 5).When(p => p.Procedure == 3).WithMessage("You must provide a rating for Anatomical Form");
+            RuleFor(p => p.Margins).InclusiveBetween(1, 5).When(p => p.Procedure == 3).WithMessage("You must provide a rating for Margins");
+            RuleFor(p => p.Finish).InclusiveBetween(1, 5).When(p => p.Procedure == 3).WithMessage("You must provide a rating for Finish");
+        }
+    }
+
+
+
 }
