@@ -61,12 +61,7 @@ namespace BlazorRades
 
         public async Task SaveBladeAsync()
         {
-            if (Procedure == 0)
-            {
-                var pr = Procedure;
-            }
-            var o = CaseServices.IAmWorking;
-            var a = Procedure;
+            await this.CaseServices.SaveAsync(this);
         }
 
         public ProcedureAndScoringViewModel(ICaseServices caseServices)

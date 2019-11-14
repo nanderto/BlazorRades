@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using BlazorRadesTests;
 
 namespace BlazorRades.Tests
 {
@@ -21,11 +22,13 @@ namespace BlazorRades.Tests
         [TestMethod()]
         public async Task SaveBladeTest()
         {
-            var sut = new ProcedureAndScoringViewModel(new CaseServices());
+            /// from here we could create functional tests that go all the way to DB
+            /// Or inject Mocked services or repositories to unit test
+            var sut = new ProcedureAndScoringViewModel(new CaseServices(new MockCaseRepositry()));
             sut.Procedure = (int)Procedure.Acceptance;
 
             await sut.SaveBladeAsync();
-            Assert.AreEqual(3, sut.CaseServices.IAmWorking);
+            Assert.AreEqual(true, sut.CaseServices.IAmWorking);
         }
     }
 }
