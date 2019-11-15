@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace BlazorRades
+namespace BlazorRades.Web
 {
     public enum HeaderButtons
     {

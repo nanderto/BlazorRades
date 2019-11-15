@@ -7,7 +7,7 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 
-namespace BlazorRades
+namespace BlazorRades.Web
 {
     public static class EditContextFluentValidationExtensions
     {

@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\BlazorRades\BlazorRades.csproj" />
+    <ProjectReference Include="..\BlazorRades.Web\BlazorRades.Web.csproj" />
   </ItemGroup>
 
 </Project>

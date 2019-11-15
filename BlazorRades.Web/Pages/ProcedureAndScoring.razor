@@ -1,4 +1,4 @@
-﻿@inject IProcedureAndScoringViewModel ViewModel
+﻿@inject BlazorRades.Web.IProcedureAndScoringViewModel ViewModel
 <Blade Id=@Id
         BladeInfos=@BladeInfos
         Type="@Type"                                     
@@ -27,6 +27,7 @@
                 <option value="2">Prep</option>
                 <option value="3">Finish</option>
             </select>
+            <ValidationMessage For="@(() => ViewModel.Procedure)" />
             <br />
             @if (ViewModel.Procedure == 1)
             {
@@ -43,6 +44,7 @@
                 <input id="OutlineandExtension" type="radio" value="4" checked="@(ViewModel.OutlineandExtension == 4)" @onchange="@(() => ViewModel.OutlineandExtension = 4)" />
                 <input id="OutlineandExtension" type="radio" value="5" checked="@(ViewModel.OutlineandExtension == 5)" @onchange="@(() => ViewModel.OutlineandExtension = 5)" />
                 <br />
+                <ValidationMessage For="@(() => ViewModel.OutlineandExtension)"/>
                 <label>Internal Form</label>
                 <input id="InternalForm" type="radio" value="1" checked="@(ViewModel.InternalForm == 1)" @onchange="@(() => ViewModel.InternalForm = 1)" />
                 <input id="InternalForm" type="radio" value="2" checked="@(ViewModel.InternalForm == 2)" @onchange="@(() => ViewModel.InternalForm = 2)" />

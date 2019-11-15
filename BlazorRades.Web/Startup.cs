@@ -11,7 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using BlazorRades.Data;
 
-namespace BlazorRades
+namespace BlazorRades.Web
 {
     public class Startup
     {
@@ -29,8 +29,9 @@ namespace BlazorRades
             services.AddRazorPages();
             services.AddServerSideBlazor();
             services.AddSingleton<WeatherForecastService>();
-            services.AddSingleton<BlazorRades.IProcedureAndScoringViewModel, BlazorRades.ProcedureAndScoringViewModel>();
+            services.AddSingleton<BlazorRades.Web.IProcedureAndScoringViewModel, BlazorRades.Web.ProcedureAndScoringViewModel>();
             services.AddTransient<ICaseServices, CaseServices>();
+            services.AddTransient<ICaseRepository, CaseRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
