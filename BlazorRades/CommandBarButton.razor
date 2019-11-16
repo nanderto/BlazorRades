@@ -1,0 +1,12 @@
+﻿<button class="@CssClass" id="Add"  @onclick="() => OnClickEvent.InvokeAsync(Id)">@ButtonLable</button>
+
+@code {
+
+    [Parameter] public string CssClass { get; set; } = "blade-command-bar-element-button";
+
+    [Parameter] public EventCallback<string> OnClickEvent { get; set; }
+
+    [Parameter] public string ButtonLable { get; set; } = "➕";
+
+    [Parameter] public string Id { get; set; }
+}

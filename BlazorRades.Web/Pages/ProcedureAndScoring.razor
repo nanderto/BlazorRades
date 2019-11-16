@@ -1,11 +1,13 @@
-﻿@inject IProcedureAndScoringViewModel ViewModel
-<Blade Id=@Id
+﻿@using BlazorRades
+@inject BlazorRadesWeb.IProcedureAndScoringViewModel ViewModel
+
+<BlazorRades.Blade Id=@Id
         BladeInfos=@BladeInfos
         Type="@Type"                                     
         Order="@Order"
         Title=@Title
         SubTitle="@SubTitle"
-        HeaderButtons=HeaderButtons.Close
+        HeaderButtons=BlazorRades.HeaderButtons.Close
         Icon="@Icon"
         IconPath="@IconPath"
         SaveButtonPath="@SaveButtonPath"
@@ -27,6 +29,7 @@
                 <option value="2">Prep</option>
                 <option value="3">Finish</option>
             </select>
+            <ValidationMessage For="@(() => ViewModel.Procedure)" />
             <br />
             @if (ViewModel.Procedure == 1)
             {
@@ -43,6 +46,7 @@
                 <input id="OutlineandExtension" type="radio" value="4" checked="@(ViewModel.OutlineandExtension == 4)" @onchange="@(() => ViewModel.OutlineandExtension = 4)" />
                 <input id="OutlineandExtension" type="radio" value="5" checked="@(ViewModel.OutlineandExtension == 5)" @onchange="@(() => ViewModel.OutlineandExtension = 5)" />
                 <br />
+                <ValidationMessage For="@(() => ViewModel.OutlineandExtension)"/>
                 <label>Internal Form</label>
                 <input id="InternalForm" type="radio" value="1" checked="@(ViewModel.InternalForm == 1)" @onchange="@(() => ViewModel.InternalForm = 1)" />
                 <input id="InternalForm" type="radio" value="2" checked="@(ViewModel.InternalForm == 2)" @onchange="@(() => ViewModel.InternalForm = 2)" />
@@ -88,12 +92,12 @@
             <button type="submit" class="blade-command-bar-element-button">Save <i class="fa fa-floppy-o"></i></button>
         </EditForm>
     </Content>
-</Blade>
+</BlazorRades.Blade>
 
 @code {
     int OutlineandExtension = 1;
 
-    [Parameter] public List<BladeInfo> BladeInfos { get; set; }
+    [Parameter] public List<BlazorRades.BladeInfo> BladeInfos { get; set; }
 
     [Parameter] public Type Type { get; set; }
 
@@ -109,7 +113,7 @@
 
     [Parameter] public string SubTitle { get; set; }
 
-    [Parameter] public HeaderButtons HeaderButtons { get; set; }
+    [Parameter] public BlazorRades.HeaderButtons HeaderButtons { get; set; }
 
     [Parameter] public RenderFragment TopCommandBars { get; set; }
 

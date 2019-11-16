@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace BlazorRades
+namespace BlazorRadesWeb
 {
     public interface ICaseServices
     {
@@ -38,9 +38,9 @@ namespace BlazorRades
 
     public class CaseRepository : ICaseRepository
     {
-        public Task SaveAsync()
+        public async Task SaveAsync()
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
     }
 }

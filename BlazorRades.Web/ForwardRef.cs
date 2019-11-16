@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
 
-namespace BlazorRades
+namespace BlazorRadesWeb
 {
     public class ForwardRef
     {
