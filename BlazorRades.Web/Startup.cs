@@ -11,7 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using BlazorRades.Data;
 
-namespace BlazorRades.Web
+namespace BlazorRadesWeb
 {
     public class Startup
     {
@@ -29,7 +29,7 @@ namespace BlazorRades.Web
             services.AddRazorPages();
             services.AddServerSideBlazor();
             services.AddSingleton<WeatherForecastService>();
-            services.AddSingleton<BlazorRades.Web.IProcedureAndScoringViewModel, BlazorRades.Web.ProcedureAndScoringViewModel>();
+            services.AddScoped<BlazorRadesWeb.IProcedureAndScoringViewModel, BlazorRadesWeb.ProcedureAndScoringViewModel>();
             services.AddTransient<ICaseServices, CaseServices>();
             services.AddTransient<ICaseRepository, CaseRepository>();
         }

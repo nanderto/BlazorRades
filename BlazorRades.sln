@@ -5,7 +5,9 @@ VisualStudioVersion = 16.0.29424.173
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorRadesTests", "BlazorRadesTests\BlazorRadesTests.csproj", "{EF448E7F-E6FF-46F8-BBC0-41C332B304A8}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorRades.Web", "BlazorRades.Web\BlazorRades.Web.csproj", "{CE75D64B-5C0F-409B-AF31-E503DDCE8A26}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorRadesWeb", "BlazorRades.Web\BlazorRadesWeb.csproj", "{CE75D64B-5C0F-409B-AF31-E503DDCE8A26}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorRades", "BlazorRades\BlazorRades.csproj", "{9CC6E96B-BEB1-482E-B0F0-BD92CD6D9E9A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{CE75D64B-5C0F-409B-AF31-E503DDCE8A26}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CE75D64B-5C0F-409B-AF31-E503DDCE8A26}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CE75D64B-5C0F-409B-AF31-E503DDCE8A26}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9CC6E96B-BEB1-482E-B0F0-BD92CD6D9E9A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9CC6E96B-BEB1-482E-B0F0-BD92CD6D9E9A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9CC6E96B-BEB1-482E-B0F0-BD92CD6D9E9A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9CC6E96B-BEB1-482E-B0F0-BD92CD6D9E9A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
