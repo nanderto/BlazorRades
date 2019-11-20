@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace BlazorRadesWeb.Pages
+namespace BlazorRadesWeb.Model
 {
     public class CalibrationCase
     {
@@ -18,9 +18,9 @@ namespace BlazorRadesWeb.Pages
 
         public int Surface { get; set; }
 
-        public int ToothNumbeer { get; set; }
+        public int ToothNumber { get; set; }
 
-        public int UploadedBy { get; set; }
+        public string UploadedBy { get; set; }
 
 
     }

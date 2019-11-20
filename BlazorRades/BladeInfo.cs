@@ -34,5 +34,7 @@ namespace BlazorRades
         public RenderFragment CommandBars { get; set; }
 
         public RenderFragment Content { get; set; }
+
+        public string CaseId { get; set; }
     }
 }

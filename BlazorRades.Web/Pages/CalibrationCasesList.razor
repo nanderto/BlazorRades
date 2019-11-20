@@ -45,7 +45,7 @@
                     <tbody>
                         @foreach (var calibrationCase in ViewModel.CalibrationCases)
                         {
-                        <tr  class="clickable" @onclick="async () => await AddBladeWithId.InvokeAsync(Tuple.Create<string, string>(typeof(ProcedureAndScoring).FullName, calibrationCase.Id.ToString()))">
+                        <tr  class="clickable" @onclick="async () => await AddBladeWithId.InvokeAsync(Tuple.Create<Type, string>(typeof(CalibrationCase), calibrationCase.Id.ToString()))">
                             
                             <td>@calibrationCase.CreateDate.ToShortDateString()</td>
                             <td>@calibrationCase.Id</td>
@@ -92,7 +92,7 @@
 
      [Parameter] public EventCallback<string> AddBlade { get; set; }
 
-     [Parameter] public EventCallback<Tuple<string, string>> AddBladeWithId { get; set; }
+     [Parameter] public EventCallback<Tuple<Type, string>> AddBladeWithId { get; set; }
 
      [Parameter] public EventCallback<string> SaveBlade { get; set; }
 
@@ -102,10 +102,13 @@
 
      public EventCallback<MouseEventArgs> Update;
 
-    
+
 
      protected override async Task OnInitializedAsync()
      {
+
+         Console.WriteLine($"OnInitializedAsync is being called for CalibrationCasesList Blade ID: {this.Id}");
+         System.Diagnostics.Debug.Print($"OnInitializedAsync is being called for CalibrationCasesList Blade ID: {this.Id}");
          await  ViewModel.GetCalibrationsAsync();
      }
 

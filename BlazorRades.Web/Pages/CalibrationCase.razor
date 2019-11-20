@@ -1,0 +1,44 @@
+﻿@inherits CalibrationCaseBase
+<style>
+    .clickable {
+        cursor: pointer;
+    }
+</style>
+<BlazorRades.Blade Id=@Id
+                   BladeInfos=@BladeInfos
+                   Type="@Type"
+                   Order="@Order"
+                   Title=@Title
+                   SubTitle="@SubTitle"
+                   HeaderButtons=BlazorRades.HeaderButtons.Close
+                   Icon="@Icon"
+                   IconPath="@IconPath"
+                   SaveButtonPath="@SaveButtonPath"
+                   CloseButtonPath="@CloseButtonPath"
+                   AddBlade="@AddBlade"
+                   DeleteThisBlade="@DeleteThisBlade">
+    <Content>
+        <p>
+            <label>"@CaseId"</label>
+        </p>
+        @if (this == null)
+        {
+            <p><em>Loading...</em></p>
+        }
+        else if (base.Procedure == 1)
+        {
+            <p />
+            <label>Acceptance</label>
+        }
+        else if (base.Procedure == 2)
+        {
+            <p />
+            <label>Prep</label>
+        }
+        else
+        {
+            <p />
+            <label>Finish</label>
+        }
+    </Content>
+</BlazorRades.Blade>

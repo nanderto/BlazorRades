@@ -1,4 +1,4 @@
-﻿@page "/BladeDemo"
+﻿@page "/BladeDemoCase"
 <h3>BladeDemo</h3>
 <br />
 <h4>@messageText</h4>
@@ -33,15 +33,16 @@
                 }
                 else if (bladeInfo.Type == typeof(CalibrationCase))
                 {
-                    <CalibrationCasesList BladeInfos="@bladeInfos"
+                    <CalibrationCase BladeInfos="@bladeInfos"
                                           Icon="🤴"
                                           SubTitle="Rate it 2 bro !!"
                                           Id="@bladeInfo.Id"
                                           Type="@bladeInfo.Type"
                                           Order="@bladeInfo.Order"
                                           DeleteThisBlade="@DeleteThisBlade"
-                                          AddBladeWithId="@AddBladeWithIdAsync">
-                    </CalibrationCasesList>
+                                          AddBladeWithId="@AddBladeWithIdAsync"
+                                          CaseId="@bladeInfo.CaseId">
+                    </CalibrationCase>
                 }
                 else
                 {
@@ -70,7 +71,7 @@
                             </p>
                             <CommandBar>
                                 @*<button class="blade-command-bar-element-button" id="Add" @onclick="() => AddBladeAsync.InvokeAsync(this.BladeTypeToAdd)">➕</button>*@
-                                <CommandBarButton ButtonLable="Save" Id="SaveID" OnClickEvent=" async () => await AddBladeAsync(typeof(ProcedureAndScoring).FullName)"></CommandBarButton>
+                                <CommandBarButton ButtonLable="Save" Id="SaveID" OnClickEvent=" async () => await AddBladeAsync(typeof(CalibrationCase).FullName)"></CommandBarButton>
                                 <button class="blade-command-bar-element-button" id="Add" @onclick="AddBlade">➕</button>
                             </CommandBar>
                         </Content>
@@ -166,8 +167,9 @@
         {
             SubTitle = $"the Id passed from the previous blade is {parameters.Item2}",
             Id = $"blade{LastInOrder + 1}",
-            Type= typeof(ProcedureAndScoring),
+            Type= parameters.Item1,
             Order = LastInOrder + 1,
+            CaseId = parameters.Item2,
         });
     }
 

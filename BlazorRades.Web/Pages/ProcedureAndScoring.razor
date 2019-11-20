@@ -149,4 +149,10 @@
         await ViewModel.SaveBladeAsync();
         await DeleteThisBlade.InvokeAsync(Id);
     }
+
+    protected override async Task OnInitializedAsync()
+    {
+        Console.WriteLine($"OnInitializedAsync is being called for ProcedureAndScoring Blade ID: {this.Id}");
+        System.Diagnostics.Debug.Print($"OnInitializedAsync is being called for ProcedureAndScoring Blade ID: {this.Id}");
+    }
 }

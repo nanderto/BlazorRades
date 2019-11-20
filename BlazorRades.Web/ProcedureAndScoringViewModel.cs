@@ -52,7 +52,9 @@ namespace BlazorRadesWeb
 
         public ICaseServices CaseServices { get; }
 
+#pragma warning disable CS0067 // The event 'ProcedureAndScoringViewModel.PropertyChanged' is never used
         public event PropertyChangedEventHandler PropertyChanged;
+#pragma warning restore CS0067 // The event 'ProcedureAndScoringViewModel.PropertyChanged' is never used
 
         //public ICommand SaveCommand { get; set; }
         public ProcedureAndScoringViewModel()
