@@ -41,7 +41,7 @@
                                           Order="@bladeInfo.Order"
                                           DeleteThisBlade="@DeleteThisBlade"
                                           AddBladeWithId="@AddBladeWithIdAsync"
-                                          CaseId="@bladeInfo.CaseId">
+                                          Parameters="@bladeInfo.Parameters">
                     </CalibrationCase>
                 }
                 else
@@ -135,7 +135,7 @@
             Order = LastInOrder + 1,
         });
     }
-    
+
     private async Task AddBladeAsync(string bladeType)
     {
         messageText = $"Trying to add a new {bladeType} type blade";
@@ -149,7 +149,6 @@
             Order = LastInOrder + 1,
         });
     }
-
     /// <summary>
     /// Add a blade type with an ID. THis should be changed from using a tuple to using a custom object
     /// I just did this to save the time of creating the object.
@@ -163,13 +162,16 @@
 
         int currentCount = bladeInfos.Count;
         int LastInOrder = bladeInfos[currentCount - 1].Order;
+        var inputParameters = new Dictionary<string, object>();
+        inputParameters.Add("CaseId", parameters.Item2);
+
         bladeInfos.Add(new BladeInfo
         {
             SubTitle = $"the Id passed from the previous blade is {parameters.Item2}",
             Id = $"blade{LastInOrder + 1}",
             Type= parameters.Item1,
             Order = LastInOrder + 1,
-            CaseId = parameters.Item2,
+            Parameters = inputParameters,
         });
     }
 
@@ -191,4 +193,25 @@
     {
         StateHasChanged();
     }
+
+    protected override async Task OnParametersSetAsync()
+    { 
+        Console.WriteLine($"OnParametersSetAsync is being called for BladeDemoCase");
+        System.Diagnostics.Debug.Print($"OnParametersSetAsync is being called for BladeDemoCase");
+    }
+
+
+    protected override async Task OnInitializedAsync()
+    {
+
+        Console.WriteLine($"OnInitializedAsync is being called for BladeDemoCase");
+        System.Diagnostics.Debug.Print($"OnInitializedAsync is being called for BladeDemoCase");
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        Console.WriteLine($"OnAfterRenderAsync is being called for BladeDemoCase. First render is {firstRender.ToString()}");
+        System.Diagnostics.Debug.Print($"OnAfterRenderAsync is being called for BladeDemoCase. First render is {firstRender.ToString()}");
+    }
+
 }

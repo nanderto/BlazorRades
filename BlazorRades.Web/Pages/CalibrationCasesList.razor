@@ -1,67 +1,70 @@
 ﻿@using BlazorRades
 @using BlazorRadesWeb.Data
 @inject ICalibrationCaseService calibrationCaseService;
+@inject BlazorRadesWeb.Pages.ICalibrationCasesListViewModel ViewModel;
 
-@inject BlazorRadesWeb.Pages.ICalibrationCasesListViewModel ViewModel
 <style>
     .clickable {
     cursor: pointer;
 }
-
 </style>
-    <BlazorRades.Blade Id=@Id
-                       BladeInfos=@BladeInfos
-                       Type="@Type"
-                       Order="@Order"
-                       Title=@Title
-                       SubTitle="@SubTitle"
-                       HeaderButtons=BlazorRades.HeaderButtons.Close
-                       Icon="@Icon"
-                       IconPath="@IconPath"
-                       SaveButtonPath="@SaveButtonPath"
-                       CloseButtonPath="@CloseButtonPath"
-                       AddBlade="@AddBlade"
-                       DeleteThisBlade="@DeleteThisBlade">
 
-        <Content>
-            @if (ViewModel.CalibrationCases == null)
-            {
-                <p><em>Loading...</em></p>
-            }
-            else
-            {
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>Create Date</th>
-                            <th>Id</th>
-                            <th>Case Id</th>
-                            <th>Material</th>
-                            <th>State</th>
-                            <th>Surface</th>
-                            <th>Tooth Number</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var calibrationCase in ViewModel.CalibrationCases)
-                        {
-                        <tr  class="clickable" @onclick="async () => await AddBladeWithId.InvokeAsync(Tuple.Create<Type, string>(typeof(CalibrationCase), calibrationCase.Id.ToString()))">
+<BlazorRades.Blade Id=@Id
+                    BladeInfos=@BladeInfos
+                    Type="@Type"
+                    Order="@Order"
+                    Title=@Title
+                    SubTitle="@SubTitle"
+                    HeaderButtons=BlazorRades.HeaderButtons.Close
+                    Icon="@Icon"
+                    IconPath="@IconPath"
+                    SaveButtonPath="@SaveButtonPath"
+                    CloseButtonPath="@CloseButtonPath"
+                    AddBlade="@AddBlade"
+                    DeleteThisBlade="@DeleteThisBlade">
+
+    <Content>
+        @if (ViewModel.CalibrationCases == null)
+        {
+            <p><em>Loading...</em></p>
+        }
+        else
+        {
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Create Date</th>
+                        <th>Id</th>
+                        <th>Case Id</th>
+                        <th>Material</th>
+                        <th>State</th>
+                        <th>Surface</th>
+                        <th>Tooth Number</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var calibrationCase in ViewModel.CalibrationCases)
+                    {
+                            Console.WriteLine($"ForEach to build list is being called");
+                            System.Diagnostics.Debug.Print($"ForEach to build list is being called");
+
+                    <tr  class="clickable" @onclick="async () => await AddBladeWithId.InvokeAsync(Tuple.Create<Type, string>(typeof(CalibrationCase), calibrationCase.Id.ToString()))">
                             
-                            <td>@calibrationCase.CreateDate.ToShortDateString()</td>
-                            <td>@calibrationCase.Id</td>
-                            <td>@calibrationCase.Material</td>
-                            <td>@calibrationCase.State</td>
-                            <td>@calibrationCase.Surface</td>
-                            <td>@calibrationCase.UploadedBy</td>
-                            <td>@calibrationCase.Surface</td>
+                        <td>@calibrationCase.CreateDate.ToShortDateString()</td>
+                        <td>@calibrationCase.Id</td>
+                        <td>@calibrationCase.Material</td>
+                        <td>@calibrationCase.State</td>
+                        <td>@calibrationCase.Surface</td>
+                        <td>@calibrationCase.UploadedBy</td>
+                        <td>@calibrationCase.Surface</td>
                             
-                        </tr>
-                        }
-                    </tbody>
-                </table>
-            }
-        </Content>
-    </BlazorRades.Blade>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        }
+    </Content>
+</BlazorRades.Blade>
 
  @code {
      [Parameter] public List<BlazorRades.BladeInfo> BladeInfos { get; set; }
@@ -102,7 +105,11 @@
 
      public EventCallback<MouseEventArgs> Update;
 
-
+     protected override async Task OnAfterRenderAsync(bool firstRender)
+     {
+         Console.WriteLine($"OnAfterRenderAsync is being called for CalibrationCasesList Blade ID: {this.Id}. First render is {firstRender.ToString()}");
+         System.Diagnostics.Debug.Print($"OnAfterRenderAsync is being called for CalibrationCasesList Blade ID: {this.Id}. First render is {firstRender.ToString()}");
+     }
 
      protected override async Task OnInitializedAsync()
      {

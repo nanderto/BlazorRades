@@ -15,6 +15,7 @@ namespace BlazorRades
     public class BladeInfo
     {
         public int Order { get; set; }
+
         public string Id { get; set; }
 
         public Type Type { get; set; }
@@ -35,6 +36,6 @@ namespace BlazorRades
 
         public RenderFragment Content { get; set; }
 
-        public string CaseId { get; set; }
+        public Dictionary<string, object> Parameters { get; set; }
     }
 }

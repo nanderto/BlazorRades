@@ -189,4 +189,17 @@
     {
         StateHasChanged();
     }
+
+     protected override async Task OnInitializedAsync()
+     {
+
+         Console.WriteLine($"OnInitializedAsync is being called for BladeDemo");
+         System.Diagnostics.Debug.Print($"OnInitializedAsync is being called for BladeDemo");
+     }
+
+         protected override async Task OnAfterRenderAsync(bool firstRender)
+     {
+         Console.WriteLine($"OnAfterRenderAsync is being called for BladeDemo. First render is {firstRender.ToString()}");
+         System.Diagnostics.Debug.Print($"OnAfterRenderAsync is being called for BladeDemoCase. First render is {firstRender.ToString()}");
+     }
 }

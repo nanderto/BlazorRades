@@ -52,16 +52,22 @@ namespace BlazorRadesWeb.Pages
 
         [Parameter] public EventCallback<string> DeleteThisBlade { get; set; }
 
-        [Parameter] public string CaseId { get; set; }
+        [Parameter] public Dictionary<string, object> Parameters { get; set; }
 
         protected override async Task OnInitializedAsync()
         {
 
-            Console.WriteLine($"OnInitializedAsync is being called for CalibrationCasesList Blade ID: {this.Id}");
-            System.Diagnostics.Debug.Print($"OnInitializedAsync is being called for CalibrationCasesList Blade ID: {this.Id}");
+            Console.WriteLine($"OnInitializedAsync is being called for CalibrationCaseBase Blade ID: {this.Id}");
+            System.Diagnostics.Debug.Print($"OnInitializedAsync is being called for CalibrationCaseBase Blade ID: {this.Id}");
 
-            CalibrationCase = this.CalibrationCaseService.GetCalibrationCaseAsync(this.CaseId);
+            CalibrationCase = this.CalibrationCaseService.GetCalibrationCaseAsync(this.Parameters.GetValueOrDefault("CaseId").ToString());
              
+        }
+
+        protected override async Task OnAfterRenderAsync(bool firstRender)
+        {
+            Console.WriteLine($"OnAfterRenderAsync is being called for CalibrationCaseBase Blade ID: {this.Id}. First render is {firstRender.ToString()}");
+            System.Diagnostics.Debug.Print($"OnAfterRenderAsync is being called for CalibrationCaseBase Blade ID: {this.Id}. First render is {firstRender.ToString()}");
         }
     }
 }

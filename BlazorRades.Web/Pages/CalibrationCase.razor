@@ -19,7 +19,7 @@
                    DeleteThisBlade="@DeleteThisBlade">
     <Content>
         <p>
-            <label>"@CaseId"</label>
+            <label>"@Parameters.GetValueOrDefault("CaseId").ToString()"</label>
         </p>
         @if (this == null)
         {
