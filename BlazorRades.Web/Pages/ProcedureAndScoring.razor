@@ -14,8 +14,8 @@
         CloseButtonPath="@CloseButtonPath"
         AddBlade="@AddBlade"
         DeleteThisBlade="@DeleteThisBlade">
-    <Content>
-        @Content
+    <ChildContent>
+        @ChildContent
         <p>
             <h4>Select your Procedure</h4>
             <br />
@@ -91,7 +91,7 @@
 
             <button type="submit" class="blade-command-bar-element-button">Save <i class="fa fa-floppy-o"></i></button>
         </EditForm>
-    </Content>
+    </ChildContent>
 </BlazorRades.Blade>
 
 @code {
@@ -123,7 +123,7 @@
 
     [Parameter] public string CloseButtonPath { get; set; }
 
-    [Parameter] public RenderFragment Content { get; set; }
+    [Parameter] public RenderFragment ChildContent { get; set; }
 
     [Parameter] public EventCallback<string> AddBlade { get; set; }
 

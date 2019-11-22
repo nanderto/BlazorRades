@@ -35,7 +35,7 @@
 
     </header>
     <div id="bladecontent">
-        @Content
+        @ChildContent
     </div>
 </div>
 
@@ -64,7 +64,7 @@
 
     [Parameter] public string CloseButtonPath { get; set; }
 
-    [Parameter] public RenderFragment Content { get; set; }
+    [Parameter] public RenderFragment ChildContent { get; set; }
 
     [Parameter] public EventCallback<string> AddBlade { get; set; }
 

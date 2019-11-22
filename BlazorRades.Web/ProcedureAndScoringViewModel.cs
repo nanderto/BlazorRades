@@ -34,10 +34,10 @@ namespace BlazorRadesWeb
 
     public class ProcedureAndScoringViewModel : IProcedureAndScoringViewModel, INotifyPropertyChanged
     {
-        [BindProperty]
+        //[BindProperty]
         public int Procedure { get; set; }
 
-        [BindProperty]
+        //[BindProperty]
         public int OutlineandExtension { get; set; }
 
         public int OperativeEnvironment { get; set; }

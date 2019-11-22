@@ -4,7 +4,7 @@
     <div style="display:inline-flex;position:relative;flex-grow: 100">*@
         <div class="blade-host-element">
             <div id="stack1" class="blade-stack-element">
-                @Content
+                @ChildContent
             </div>
         </div>
     @*</div>*@
@@ -54,6 +54,8 @@
         //}
 
         //private RenderFragment commandBars;
+
+        [Parameter] public RenderFragment ChildContent { get; set; }
 
         [Parameter]
         public RenderFragment Content
