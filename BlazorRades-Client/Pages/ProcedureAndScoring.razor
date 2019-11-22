@@ -1,0 +1,165 @@
+﻿@using BlazorRades
+@inject BlazorRadesWeb.IProcedureAndScoringViewModel ViewModel
+
+
+<BlazorRades.Blade Id=@Id
+                   BladeInfos=@BladeInfos
+                   Type="@Type"
+                   Order="@Order"
+                   Title=@Title
+                   SubTitle="@SubTitle"
+                   HeaderButtons=BlazorRades.HeaderButtons.Close
+                   Icon="@Icon"
+                   IconPath="@IconPath"
+                   SaveButtonPath="@SaveButtonPath"
+                   CloseButtonPath="@CloseButtonPath"
+                   AddBlade="@AddBlade"
+                   DeleteThisBlade="@DeleteThisBlade">
+    <ChildContent>
+        @ChildContent
+        <p>
+            <h4>Select your Procedure</h4>
+            <br />
+            the blade Id is @Id
+        </p>
+        <EditForm Model="ViewModel" OnValidSubmit="SubmitValidForm">
+            <FluentValidationValidator />
+            <ValidationSummary />
+            <select id="Procedure" @bind="ViewModel.Procedure">
+                <option value="1">Acceptance</option>
+                <option value="2">Prep</option>
+                <option value="3">Finish</option>
+            </select>
+            <ValidationMessage For="@(() => ViewModel.Procedure)" />
+            <br />
+            @if (ViewModel.Procedure == 1)
+            {
+                <label>Acceptance</label>
+                <input type="checkbox" />
+                <br />
+            }
+            else if (ViewModel.Procedure == 2)
+            {
+                <label>Outline and Extension</label>
+                <input id="OutlineandExtension" type="radio" value="1" checked="@(ViewModel.OutlineandExtension == 1)" @onchange="@(() => ViewModel.OutlineandExtension = 1)" />
+                <input id="OutlineandExtension" type="radio" value="2" checked="@(ViewModel.OutlineandExtension == 2)" @onchange="@(() => ViewModel.OutlineandExtension = 2)" />
+                <input id="OutlineandExtension" type="radio" value="3" checked="@(ViewModel.OutlineandExtension == 3)" @onchange="@(() => ViewModel.OutlineandExtension = 3)" />
+                <input id="OutlineandExtension" type="radio" value="4" checked="@(ViewModel.OutlineandExtension == 4)" @onchange="@(() => ViewModel.OutlineandExtension = 4)" />
+                <input id="OutlineandExtension" type="radio" value="5" checked="@(ViewModel.OutlineandExtension == 5)" @onchange="@(() => ViewModel.OutlineandExtension = 5)" />
+                <br />
+                <ValidationMessage For="@(() => ViewModel.OutlineandExtension)" />
+                <label>Internal Form</label>
+                <input id="InternalForm" type="radio" value="1" checked="@(ViewModel.InternalForm == 1)" @onchange="@(() => ViewModel.InternalForm = 1)" />
+                <input id="InternalForm" type="radio" value="2" checked="@(ViewModel.InternalForm == 2)" @onchange="@(() => ViewModel.InternalForm = 2)" />
+                <input id="InternalForm" type="radio" value="3" checked="@(ViewModel.InternalForm == 3)" @onchange="@(() => ViewModel.InternalForm = 3)" />
+                <input id="InternalForm" type="radio" value="4" checked="@(ViewModel.InternalForm == 4)" @onchange="@(() => ViewModel.InternalForm = 4)" />
+                <input id="InternalForm" type="radio" value="5" checked="@(ViewModel.InternalForm == 5)" @onchange="@(() => ViewModel.InternalForm = 5)" />
+                <br />
+                <label>Operative Environment</label>
+                <input id="OperativeEnvironment" type="radio" value="1" checked="@(ViewModel.OperativeEnvironment == 1)" @onchange="@(() => ViewModel.OperativeEnvironment = 1)" />
+                <input id="OperativeEnvironment" type="radio" value="2" checked="@(ViewModel.OperativeEnvironment == 2)" @onchange="@(() => ViewModel.OperativeEnvironment = 2)" />
+                <input id="OperativeEnvironment" type="radio" value="3" checked="@(ViewModel.OperativeEnvironment == 3)" @onchange="@(() => ViewModel.OperativeEnvironment = 3)" />
+                <input id="OperativeEnvironment" type="radio" value="4" checked="@(ViewModel.OperativeEnvironment == 4)" @onchange="@(() => ViewModel.OperativeEnvironment = 4)" />
+                <input id="OperativeEnvironment" type="radio" value="5" checked="@(ViewModel.OperativeEnvironment == 5)" @onchange="@(() => ViewModel.OperativeEnvironment = 5)" />
+                <br />
+            }
+            else
+            {
+                {
+                    <label>Anatomical Form</label>
+                    <input id="AnatomicalForm" type="radio" value="1" checked="@(ViewModel.AnatomicalForm == 1)" @onchange="@(() => ViewModel.AnatomicalForm = 1)" />
+                    <input id="AnatomicalForm" type="radio" value="2" checked="@(ViewModel.AnatomicalForm == 2)" @onchange="@(() => ViewModel.AnatomicalForm = 2)" />
+                    <input id="AnatomicalForm" type="radio" value="3" checked="@(ViewModel.AnatomicalForm == 3)" @onchange="@(() => ViewModel.AnatomicalForm = 3)" />
+                    <input id="AnatomicalForm" type="radio" value="4" checked="@(ViewModel.AnatomicalForm == 4)" @onchange="@(() => ViewModel.AnatomicalForm = 4)" />
+                    <input id="AnatomicalForm" type="radio" value="5" checked="@(ViewModel.AnatomicalForm == 5)" @onchange="@(() => ViewModel.AnatomicalForm = 5)" />
+                    <br />
+                    <label>Margins</label>
+                    <input id="Margins" type="radio" value="1" checked="@(ViewModel.Margins == 1)" @onchange="@(() => ViewModel.Margins = 1)" />
+                    <input id="Margins" type="radio" value="2" checked="@(ViewModel.Margins == 2)" @onchange="@(() => ViewModel.Margins = 2)" />
+                    <input id="Margins" type="radio" value="3" checked="@(ViewModel.Margins == 3)" @onchange="@(() => ViewModel.Margins = 3)" />
+                    <input id="Margins" type="radio" value="4" checked="@(ViewModel.Margins == 4)" @onchange="@(() => ViewModel.Margins = 4)" />
+                    <input id="Margins" type="radio" value="5" checked="@(ViewModel.Margins == 5)" @onchange="@(() => ViewModel.Margins = 5)" />
+                    <br />
+                    <label>Finish, Function and Damage</label>
+                    <input id="Finish" type="radio" value="1" checked="@(ViewModel.Finish == 1)" @onchange="@(() => ViewModel.Finish = 1)" />
+                    <input id="Finish" type="radio" value="2" checked="@(ViewModel.Finish == 2)" @onchange="@(() => ViewModel.Finish = 2)" />
+                    <input id="Finish" type="radio" value="3" checked="@(ViewModel.Finish == 3)" @onchange="@(() => ViewModel.Finish = 3)" />
+                    <input id="Finish" type="radio" value="4" checked="@(ViewModel.Finish == 4)" @onchange="@(() => ViewModel.Finish = 4)" />
+                    <input id="Finish" type="radio" value="5" checked="@(ViewModel.Finish == 5)" @onchange="@(() => ViewModel.Finish = 5)" />
+                    <br />
+                }
+            }
+
+            <button type="submit" class="blade-command-bar-element-button">Save <i class="fa fa-floppy-o"></i></button>
+        </EditForm>
+    </ChildContent>
+</BlazorRades.Blade>
+
+@code {
+    int OutlineandExtension = 1;
+
+    [Parameter] public List<BlazorRades.BladeInfo> BladeInfos { get; set; }
+
+    [Parameter] public Type Type { get; set; }
+
+    [Parameter] public int Order { get; set; }
+
+    [Parameter] public string Id { get; set; }
+
+    [Parameter] public string Icon { get; set; }
+
+    [Parameter] public string IconPath { get; set; }
+
+    [Parameter] public string Title { get; set; } = "Procedure and Scoring";
+
+    [Parameter] public string SubTitle { get; set; }
+
+    [Parameter] public BlazorRades.HeaderButtons HeaderButtons { get; set; }
+
+    [Parameter] public RenderFragment TopCommandBars { get; set; }
+
+    [Parameter] public RenderFragment BottomCommandBars { get; set; }
+
+    [Parameter] public string SaveButtonPath { get; set; }
+
+    [Parameter] public string CloseButtonPath { get; set; }
+
+    [Parameter] public RenderFragment ChildContent { get; set; }
+
+    [Parameter] public EventCallback<string> AddBlade { get; set; }
+
+    [Parameter] public EventCallback<string> SaveBlade { get; set; }
+
+    // [Parameter] public Dictionary<string, EventCallback<MouseEventArgs>> CallBackCollection { get; set; }
+
+    [Parameter] public EventCallback<string> ReFreshRequested { get; set; }
+
+    [Parameter] public EventCallback<string> DeleteThisBlade { get; set; }
+
+    public EventCallback<MouseEventArgs> Update;
+
+    public async void SaveProcedureAndScoring()
+    {
+
+        await DeleteThisBlade.InvokeAsync(Id);
+    }
+
+    public async Task SubmitValidForm()
+    {
+        Console.WriteLine("Form Submitted Successfully!");
+
+        await DeleteThisBlade.InvokeAsync(Id);
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        Console.WriteLine($"OnInitializedAsync is being called for ProcedureAndScoring Blade ID: {this.Id}");
+        System.Diagnostics.Debug.Print($"OnInitializedAsync is being called for ProcedureAndScoring Blade ID: {this.Id}");
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        Console.WriteLine($"OnAfterRenderAsync is being called for ProcedureAndScoring Blade ID: {this.Id}. First render is {firstRender.ToString()}");
+        System.Diagnostics.Debug.Print($"OnAfterRenderAsync is being called for ProcedureAndScoring Blade ID: {this.Id}. First render is {firstRender.ToString()}");
+    }
+}

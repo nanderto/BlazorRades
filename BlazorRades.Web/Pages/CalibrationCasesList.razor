@@ -23,7 +23,7 @@
                     AddBlade="@AddBlade"
                     DeleteThisBlade="@DeleteThisBlade">
 
-    <Content>
+    <ChildContent>
         @if (ViewModel.CalibrationCases == null)
         {
             <p><em>Loading...</em></p>
@@ -63,7 +63,7 @@
                 </tbody>
             </table>
         }
-    </Content>
+    </ChildContent>
 </BlazorRades.Blade>
 
  @code {
