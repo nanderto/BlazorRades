@@ -1,6 +1,5 @@
 ﻿@using BlazorRades
 @using BlazorRadesWeb.Data
-@using BlazorRadesWeb.Model
 @inject ICalibrationCaseService calibrationCaseService;
 @inject BlazorRadesWeb.Pages.ICalibrationCasesListViewModel ViewModel;
 
@@ -49,7 +48,7 @@
                         Console.WriteLine($"ForEach to build list is being called");
                         System.Diagnostics.Debug.Print($"ForEach to build list is being called");
 
-                        <tr class="clickable" @onclick="async () => await AddBladeWithId.InvokeAsync(Tuple.Create<Type, string>(typeof(CalibrationCase), calibrationCase.Id.ToString()))">
+                        <tr class="clickable" @onclick="async () => await AddBladeWithId.InvokeAsync(Tuple.Create<Type, string>(typeof(CalibrationCaseBlade), calibrationCase.Id.ToString()))">
 
                             <td>@calibrationCase.CreateDate.ToShortDateString()</td>
                             <td>@calibrationCase.Id</td>

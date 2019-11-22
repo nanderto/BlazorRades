@@ -1,4 +1,7 @@
 ﻿@page "/BladeDemoCase"
+@using BlazorRades
+@using BlazorRadesWeb.Model
+
 <h3>BladeDemo</h3>
 <br />
 <h4>@messageText</h4>
@@ -33,7 +36,7 @@
                 }
                 else if (bladeInfo.Type == typeof(CalibrationCase))
                 {
-                    <CalibrationCase BladeInfos="@bladeInfos"
+                    <CalibrationCaseBlade BladeInfos="@bladeInfos"
                                           Icon="🤴"
                                           SubTitle="Rate it 2 bro !!"
                                           Id="@bladeInfo.Id"
@@ -42,7 +45,7 @@
                                           DeleteThisBlade="@DeleteThisBlade"
                                           AddBladeWithId="@AddBladeWithIdAsync"
                                           Parameters="@bladeInfo.Parameters">
-                    </CalibrationCase>
+                    </CalibrationCaseBlade>
                 }
                 else
                 {

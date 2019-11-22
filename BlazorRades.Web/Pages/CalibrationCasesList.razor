@@ -5,23 +5,23 @@
 
 <style>
     .clickable {
-    cursor: pointer;
-}
+        cursor: pointer;
+    }
 </style>
 
 <BlazorRades.Blade Id=@Id
-                    BladeInfos=@BladeInfos
-                    Type="@Type"
-                    Order="@Order"
-                    Title=@Title
-                    SubTitle="@SubTitle"
-                    HeaderButtons=BlazorRades.HeaderButtons.Close
-                    Icon="@Icon"
-                    IconPath="@IconPath"
-                    SaveButtonPath="@SaveButtonPath"
-                    CloseButtonPath="@CloseButtonPath"
-                    AddBlade="@AddBlade"
-                    DeleteThisBlade="@DeleteThisBlade">
+                   BladeInfos=@BladeInfos
+                   Type="@Type"
+                   Order="@Order"
+                   Title=@Title
+                   SubTitle="@SubTitle"
+                   HeaderButtons=BlazorRades.HeaderButtons.Close
+                   Icon="@Icon"
+                   IconPath="@IconPath"
+                   SaveButtonPath="@SaveButtonPath"
+                   CloseButtonPath="@CloseButtonPath"
+                   AddBlade="@AddBlade"
+                   DeleteThisBlade="@DeleteThisBlade">
 
     <ChildContent>
         @if (ViewModel.CalibrationCases == null)
@@ -45,20 +45,20 @@
                 <tbody>
                     @foreach (var calibrationCase in ViewModel.CalibrationCases)
                     {
-                            Console.WriteLine($"ForEach to build list is being called");
-                            System.Diagnostics.Debug.Print($"ForEach to build list is being called");
+                        Console.WriteLine($"ForEach to build list is being called");
+                        System.Diagnostics.Debug.Print($"ForEach to build list is being called");
 
-                    <tr  class="clickable" @onclick="async () => await AddBladeWithId.InvokeAsync(Tuple.Create<Type, string>(typeof(CalibrationCase), calibrationCase.Id.ToString()))">
-                            
-                        <td>@calibrationCase.CreateDate.ToShortDateString()</td>
-                        <td>@calibrationCase.Id</td>
-                        <td>@calibrationCase.Material</td>
-                        <td>@calibrationCase.State</td>
-                        <td>@calibrationCase.Surface</td>
-                        <td>@calibrationCase.UploadedBy</td>
-                        <td>@calibrationCase.Surface</td>
-                            
-                    </tr>
+                        <tr class="clickable" @onclick="async () => await AddBladeWithId.InvokeAsync(Tuple.Create<Type, string>(typeof(CalibrationCaseBlade), calibrationCase.Id.ToString()))">
+
+                            <td>@calibrationCase.CreateDate.ToShortDateString()</td>
+                            <td>@calibrationCase.Id</td>
+                            <td>@calibrationCase.Material</td>
+                            <td>@calibrationCase.State</td>
+                            <td>@calibrationCase.Surface</td>
+                            <td>@calibrationCase.UploadedBy</td>
+                            <td>@calibrationCase.Surface</td>
+
+                        </tr>
                     }
                 </tbody>
             </table>
@@ -66,57 +66,57 @@
     </ChildContent>
 </BlazorRades.Blade>
 
- @code {
-     [Parameter] public List<BlazorRades.BladeInfo> BladeInfos { get; set; }
+@code {
+    [Parameter] public List<BlazorRades.BladeInfo> BladeInfos { get; set; }
 
-     [Parameter] public Type Type { get; set; }
+    [Parameter] public Type Type { get; set; }
 
-     [Parameter] public int Order { get; set; }
+    [Parameter] public int Order { get; set; }
 
-     [Parameter] public string Id { get; set; }
+    [Parameter] public string Id { get; set; }
 
-     [Parameter] public string Icon { get; set; }
+    [Parameter] public string Icon { get; set; }
 
-     [Parameter] public string IconPath { get; set; }
+    [Parameter] public string IconPath { get; set; }
 
-     [Parameter] public string Title { get; set; } = "Calibration Cases";
+    [Parameter] public string Title { get; set; } = "Calibration Cases";
 
-     [Parameter] public string SubTitle { get; set; }
+    [Parameter] public string SubTitle { get; set; }
 
-     [Parameter] public BlazorRades.HeaderButtons HeaderButtons { get; set; }
+    [Parameter] public BlazorRades.HeaderButtons HeaderButtons { get; set; }
 
-     [Parameter] public RenderFragment TopCommandBars { get; set; }
+    [Parameter] public RenderFragment TopCommandBars { get; set; }
 
-     [Parameter] public RenderFragment BottomCommandBars { get; set; }
+    [Parameter] public RenderFragment BottomCommandBars { get; set; }
 
-     [Parameter] public string SaveButtonPath { get; set; }
+    [Parameter] public string SaveButtonPath { get; set; }
 
-     [Parameter] public string CloseButtonPath { get; set; }
+    [Parameter] public string CloseButtonPath { get; set; }
 
-     [Parameter] public EventCallback<string> AddBlade { get; set; }
+    [Parameter] public EventCallback<string> AddBlade { get; set; }
 
-     [Parameter] public EventCallback<Tuple<Type, string>> AddBladeWithId { get; set; }
+    [Parameter] public EventCallback<Tuple<Type, string>> AddBladeWithId { get; set; }
 
-     [Parameter] public EventCallback<string> SaveBlade { get; set; }
+    [Parameter] public EventCallback<string> SaveBlade { get; set; }
 
-     [Parameter] public EventCallback<string> ReFreshRequested { get; set; }
+    [Parameter] public EventCallback<string> ReFreshRequested { get; set; }
 
-     [Parameter] public EventCallback<string> DeleteThisBlade { get; set; }
+    [Parameter] public EventCallback<string> DeleteThisBlade { get; set; }
 
-     public EventCallback<MouseEventArgs> Update;
+    public EventCallback<MouseEventArgs> Update;
 
-     protected override async Task OnAfterRenderAsync(bool firstRender)
-     {
-         Console.WriteLine($"OnAfterRenderAsync is being called for CalibrationCasesList Blade ID: {this.Id}. First render is {firstRender.ToString()}");
-         System.Diagnostics.Debug.Print($"OnAfterRenderAsync is being called for CalibrationCasesList Blade ID: {this.Id}. First render is {firstRender.ToString()}");
-     }
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        Console.WriteLine($"OnAfterRenderAsync is being called for CalibrationCasesList Blade ID: {this.Id}. First render is {firstRender.ToString()}");
+        System.Diagnostics.Debug.Print($"OnAfterRenderAsync is being called for CalibrationCasesList Blade ID: {this.Id}. First render is {firstRender.ToString()}");
+    }
 
-     protected override async Task OnInitializedAsync()
-     {
+    protected override async Task OnInitializedAsync()
+    {
 
-         Console.WriteLine($"OnInitializedAsync is being called for CalibrationCasesList Blade ID: {this.Id}");
-         System.Diagnostics.Debug.Print($"OnInitializedAsync is being called for CalibrationCasesList Blade ID: {this.Id}");
-         await  ViewModel.GetCalibrationsAsync();
-     }
+        Console.WriteLine($"OnInitializedAsync is being called for CalibrationCasesList Blade ID: {this.Id}");
+        System.Diagnostics.Debug.Print($"OnInitializedAsync is being called for CalibrationCasesList Blade ID: {this.Id}");
+        await ViewModel.GetCalibrationsAsync();
+    }
 
- }
+}

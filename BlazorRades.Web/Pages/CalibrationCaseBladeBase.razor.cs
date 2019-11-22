@@ -8,7 +8,7 @@ using BlazorRadesWeb.Model;
 
 namespace BlazorRadesWeb.Pages
 {
-    public class CalibrationCaseBase : ComponentBase
+    public class CalibrationCaseBladeBase : ComponentBase
     {
         [Inject] ICalibrationCaseService CalibrationCaseService { get; set; }
 
@@ -60,9 +60,7 @@ namespace BlazorRadesWeb.Pages
             Console.WriteLine($"OnInitializedAsync is being called for CalibrationCaseBase Blade ID: {this.Id}");
             System.Diagnostics.Debug.Print($"OnInitializedAsync is being called for CalibrationCaseBase Blade ID: {this.Id}");
 
-            object Id;
-            this.Parameters.TryGetValue("CaseId", out Id);
-            CalibrationCase = this.CalibrationCaseService.GetCalibrationCaseAsync((string)Id);
+            CalibrationCase = this.CalibrationCaseService.GetCalibrationCaseAsync(this.Parameters.GetValueOrDefault("CaseId").ToString());
              
         }
 

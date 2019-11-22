@@ -8,7 +8,7 @@ using BlazorRadesWeb.Model;
 
 namespace BlazorRadesWeb.Pages
 {
-    public class CalibrationCaseBase : ComponentBase
+    public class CalibrationCaseBladeBase : ComponentBase
     {
         [Inject] ICalibrationCaseService CalibrationCaseService { get; set; }
 

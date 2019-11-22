@@ -1,20 +1,19 @@
 ﻿@using BlazorRades
 @inject BlazorRadesWeb.IProcedureAndScoringViewModel ViewModel
 
-
 <BlazorRades.Blade Id=@Id
-                   BladeInfos=@BladeInfos
-                   Type="@Type"
-                   Order="@Order"
-                   Title=@Title
-                   SubTitle="@SubTitle"
-                   HeaderButtons=BlazorRades.HeaderButtons.Close
-                   Icon="@Icon"
-                   IconPath="@IconPath"
-                   SaveButtonPath="@SaveButtonPath"
-                   CloseButtonPath="@CloseButtonPath"
-                   AddBlade="@AddBlade"
-                   DeleteThisBlade="@DeleteThisBlade">
+        BladeInfos=@BladeInfos
+        Type="@Type"                                     
+        Order="@Order"
+        Title=@Title
+        SubTitle="@SubTitle"
+        HeaderButtons=BlazorRades.HeaderButtons.Close
+        Icon="@Icon"
+        IconPath="@IconPath"
+        SaveButtonPath="@SaveButtonPath"
+        CloseButtonPath="@CloseButtonPath"
+        AddBlade="@AddBlade"
+        DeleteThisBlade="@DeleteThisBlade">
     <ChildContent>
         @ChildContent
         <p>
@@ -47,7 +46,7 @@
                 <input id="OutlineandExtension" type="radio" value="4" checked="@(ViewModel.OutlineandExtension == 4)" @onchange="@(() => ViewModel.OutlineandExtension = 4)" />
                 <input id="OutlineandExtension" type="radio" value="5" checked="@(ViewModel.OutlineandExtension == 5)" @onchange="@(() => ViewModel.OutlineandExtension = 5)" />
                 <br />
-                <ValidationMessage For="@(() => ViewModel.OutlineandExtension)" />
+                <ValidationMessage For="@(() => ViewModel.OutlineandExtension)"/>
                 <label>Internal Form</label>
                 <input id="InternalForm" type="radio" value="1" checked="@(ViewModel.InternalForm == 1)" @onchange="@(() => ViewModel.InternalForm = 1)" />
                 <input id="InternalForm" type="radio" value="2" checked="@(ViewModel.InternalForm == 2)" @onchange="@(() => ViewModel.InternalForm = 2)" />
@@ -140,14 +139,14 @@
 
     public async void SaveProcedureAndScoring()
     {
-
+        await ViewModel.SaveBladeAsync();
         await DeleteThisBlade.InvokeAsync(Id);
     }
 
     public async Task SubmitValidForm()
     {
         Console.WriteLine("Form Submitted Successfully!");
-
+        await ViewModel.SaveBladeAsync();
         await DeleteThisBlade.InvokeAsync(Id);
     }
 
