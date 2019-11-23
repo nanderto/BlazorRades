@@ -74,7 +74,7 @@
                             </p>
                             <CommandBar>
                                 @*<button class="blade-command-bar-element-button" id="Add" @onclick="() => AddBladeAsync.InvokeAsync(this.BladeTypeToAdd)">➕</button>*@
-                                <CommandBarButton ButtonLable="Save" Id="SaveID" OnClickEvent=" async () => await AddBladeAsync(typeof(CalibrationCase).FullName)"></CommandBarButton>
+                                <CommandBarButton ButtonLable="Save" Id="SaveID" OnClickEvent=" async () => await AddBladeAsync(typeof(CalibrationCaseBlade).FullName)"></CommandBarButton>
                                 <button class="blade-command-bar-element-button" id="Add" @onclick="AddBlade">➕</button>
                             </CommandBar>
                         </ChildContent>

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using BlazorRadesWeb.Model;
+using System.Net.Http;
 
 namespace BlazorRadesWeb.Data
 {
@@ -15,8 +16,17 @@ namespace BlazorRadesWeb.Data
 
     public class CalibrationCaseService : ICalibrationCaseService
     {
-        public Model.CalibrationCase GetCalibrationCaseAsync(string id)
+        private readonly HttpClient http;
+
+        public CalibrationCaseService(HttpClient Http)
         {
+            http = Http;
+        }
+
+        public async Model.CalibrationCase GetCalibrationCaseAsync(string id)
+        {
+            var forecasts = await http.GetAsync("");
+
             var rng = new Random();
             return new BlazorRadesWeb.Model.CalibrationCase()
             {
@@ -31,10 +41,10 @@ namespace BlazorRadesWeb.Data
             };
         }
 
-        public Task<Model.CalibrationCase[]> GetCalibrationsAsync(DateTime startDate)
+        public async Task<Model.CalibrationCase[]> GetCalibrationsAsync(DateTime startDate)
         {
             var rng = new Random();
-            return Task.FromResult(Enumerable.Range(1, 5).Select(index => new Model.CalibrationCase
+            return await Task.FromResult(Enumerable.Range(1, 5).Select(index => new Model.CalibrationCase
             {
                 CreateDate = startDate.AddDays(-index),
                 Material = 2,

@@ -54,6 +54,14 @@ namespace BlazorRadesWeb.Pages
 
         [Parameter] public Dictionary<string, object> Parameters { get; set; }
 
+        protected string GetCaseId(Dictionary<string, object> parameters)
+        {
+            object Id;
+            parameters.TryGetValue("CaseId", out Id);
+
+            return (string)Id;
+        }
+
         protected override async Task OnInitializedAsync()
         {
 
