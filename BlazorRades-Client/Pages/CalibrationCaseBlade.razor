@@ -43,3 +43,12 @@
     </ChildContent>
 </BlazorRades.Blade>
 
+@code {
+    protected string GetCaseId(Dictionary<string, object> parameters)
+    {
+        object Id;
+        parameters.TryGetValue("CaseId", out Id);
+
+        return (string)Id;
+    }
+}
