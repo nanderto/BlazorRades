@@ -1,0 +1,64 @@
+﻿@using BlazorRades
+@using BlazorRadesWeb
+@using BlazorRadesWeb.Pages
+@using BlazorRadesWeb.Shared
+@using BlazorRadesWeb.Model
+@using BlazorRadesWeb.Client
+@using BlazorRadesWeb.Client.Pages
+@using BlazorRadesWeb.Client.Data
+@using BlazorRadesWeb.Client.Shared
+
+@inherits CalibrationCaseBladeBase
+<style>
+    .clickable {
+        cursor: pointer;
+    }
+</style>
+<BlazorRades.Blade Id=@Id
+                   BladeInfos=@BladeInfos
+                   Type="@Type"
+                   Order="@Order"
+                   Title=@Title
+                   SubTitle="@SubTitle"
+                   HeaderButtons=BlazorRades.HeaderButtons.Close
+                   Icon="@Icon"
+                   IconPath="@IconPath"
+                   SaveButtonPath="@SaveButtonPath"
+                   CloseButtonPath="@CloseButtonPath"
+                   AddBlade="@AddBlade"
+                   DeleteThisBlade="@DeleteThisBlade">
+    <ChildContent>
+        <p>
+            <label>"@GetCaseId(Parameters)"</label>
+        </p>
+        @if (this == null)
+        {
+            <p><em>Loading...</em></p>
+        }
+        else if (base.Procedure == 1)
+        {
+            <p />
+            <label>Acceptance</label>
+        }
+        else if (base.Procedure == 2)
+        {
+            <p />
+            <label>Prep</label>
+        }
+        else
+        {
+            <p />
+            <label>Finish</label>
+        }
+    </ChildContent>
+</BlazorRades.Blade>
+
+@code {
+    protected string GetCaseId(Dictionary<string, object> parameters)
+    {
+        object Id;
+        parameters.TryGetValue("CaseId", out Id);
+
+        return (string)Id;
+    }
+}
