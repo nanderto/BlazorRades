@@ -2,39 +2,50 @@
 
 <div id="@Id" class="blade-blade-element" ref="BlazorRade">
     <header>
-        <h2 id="title">@Title</h2>
-        @if (!string.IsNullOrEmpty(SubTitle))
-        {
-            <small id="sub-title">@SubTitle</small>
-        }
-
-        @if (!string.IsNullOrEmpty(Icon))
-        {
-            <div id="icon">@Icon</div>
-        }
-        else if (!string.IsNullOrEmpty(IconPath))
-        {
-            <div><img src="@IconPath" /></div>
-        }
-
-        @if (HeaderButtons == HeaderButtons.Close)
-        {
-            <button class="blade-command-bar-element-button" @onclick="() => DeleteThisBlade.InvokeAsync(this.Id)" id="close">X</button>
-        }
-        else if (HeaderButtons == HeaderButtons.SaveAndClose)
-        {
-            <button class="blade-command-bar-element-button" id="Save" @onclick="() => SaveBlade.InvokeAsync(this.Id)"><i class="fa fa-floppy-o"></i></button>
-            <button class="blade-command-bar-element-button" id="close" @onclick="() => DeleteThisBlade.InvokeAsync(this.Id)">X</button>
-        }
-        else if (HeaderButtons == HeaderButtons.SaveCloseAndAdd)
-        {
-            <button class="blade-command-bar-element-button" id="Add" @onclick="() => AddBlade.InvokeAsync(this.BladeTypeToAdd)">➕</button>
-            <button class="blade-command-bar-element-button" id="Save" @onclick="() => SaveBlade.InvokeAsync(this.Id)"><i class="fa fa-floppy-o"></i></button>
-            <button class="blade-command-bar-element-button" id="close" @onclick="() => DeleteThisBlade.InvokeAsync(this.Id)">X</button>
-        }
-
+        <div class="blade-element-header-title">
+            <div class="blade-element-header-content">
+                <div class="blade-element-header-content-icon">
+                    @if (!string.IsNullOrEmpty(Icon))
+                    {
+                        <div id="icon">@Icon</div>
+                    }
+                    else if (!string.IsNullOrEmpty(IconPath))
+                    {
+                        <div><img src="@IconPath" /></div>
+                    }
+                </div>
+                <div>
+                    <div>
+                        <h2 id="title">@Title</h2>
+                    </div>
+                    @if (!string.IsNullOrEmpty(SubTitle))
+                    {
+                        <div class="blade-element-header-content-subtitle">
+                            <small id="sub-title">@SubTitle</small>
+                        </div>
+                    }
+                </div>
+            </div>
+            <div class="blade-element-header-title-buttons">
+                @if (HeaderButtons == HeaderButtons.Close)
+                {
+                    <button class="blade-command-bar-element-button" @onclick="() => DeleteThisBlade.InvokeAsync(this.Id)" id="close">X</button>
+                }
+                else if (HeaderButtons == HeaderButtons.SaveAndClose)
+                {
+                    <button class="blade-command-bar-element-button" id="Save" @onclick="() => SaveBlade.InvokeAsync(this.Id)"><i class="fa fa-floppy-o"></i></button>
+                    <button class="blade-command-bar-element-button" id="close" @onclick="() => DeleteThisBlade.InvokeAsync(this.Id)">X</button>
+                }
+                else if (HeaderButtons == HeaderButtons.SaveCloseAndAdd)
+                {
+                    <button class="blade-command-bar-element-button" id="Add" @onclick="() => AddBlade.InvokeAsync(this.BladeTypeToAdd)">➕</button>
+                    <button class="blade-command-bar-element-button" id="Save" @onclick="() => SaveBlade.InvokeAsync(this.Id)"><i class="fa fa-floppy-o"></i></button>
+                    <button class="blade-command-bar-element-button" id="close" @onclick="() => DeleteThisBlade.InvokeAsync(this.Id)">X</button>
+                }
+            </div>
+        </div>
     </header>
-    <div id="bladecontent">
+    <div id="bladecontent" class="blade">
         @Content
     </div>
 </div>

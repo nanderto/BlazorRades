@@ -28,6 +28,8 @@ app {
 
 .main {
     flex: 1;
+    display: flex;
+    flex-direction: column;
 }
 
 .main .top-row {
@@ -93,6 +95,7 @@ app {
 
 .content {
     padding-top: 1.1rem;
+    height: 100%;
 }
 
 .navbar-toggler {

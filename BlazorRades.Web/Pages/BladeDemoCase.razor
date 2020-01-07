@@ -1,88 +1,90 @@
 ﻿@page "/BladeDemoCase"
-<h3>BladeDemo</h3>
-<br />
-<h4>@messageText</h4>
-<div class="flex-container">
-<div style="position:relative;height:100%;flex-grow: 100">
-    <BladeContainer BladeInfos="@bladeInfos">
-        <Content>
-            @foreach (var bladeInfo in bladeInfos.OrderBy(bi => bi.Order))
-            {
-                if (bladeInfo.Type == typeof(ProcedureAndScoring))
-                {
-                    <ProcedureAndScoring BladeInfos="@bladeInfos"
-                                         Icon="🤴"
-                                         SubTitle="@bladeInfo.SubTitle"
-                                         Id="@bladeInfo.Id"
-                                         Type="@bladeInfo.Type"
-                                         Order="@bladeInfo.Order"
-                                         DeleteThisBlade="@DeleteThisBlade">
-                    </ProcedureAndScoring>
-                }
-                else if (bladeInfo.Type == typeof(CalibrationCasesList))
-                {
-                    <CalibrationCasesList BladeInfos="@bladeInfos"
-                                          Icon="🤴"
-                                          SubTitle="Rate it!! bro"
-                                          Id="@bladeInfo.Id"
-                                          Type="@bladeInfo.Type"
-                                          Order="@bladeInfo.Order"
-                                          DeleteThisBlade="@DeleteThisBlade"
-                                          AddBladeWithId="@AddBladeWithIdAsync">
-                    </CalibrationCasesList>
-                }
-                else if (bladeInfo.Type == typeof(CalibrationCase))
-                {
-                    <CalibrationCase BladeInfos="@bladeInfos"
-                                          Icon="🤴"
-                                          SubTitle="Rate it 2 bro !!"
-                                          Id="@bladeInfo.Id"
-                                          Type="@bladeInfo.Type"
-                                          Order="@bladeInfo.Order"
-                                          DeleteThisBlade="@DeleteThisBlade"
-                                          AddBladeWithId="@AddBladeWithIdAsync"
-                                          Parameters="@bladeInfo.Parameters">
-                    </CalibrationCase>
-                }
-                else
-                {
-                    <Blade BladeInfos="@bladeInfos"
-                           Id="@bladeInfo.Id"
-                           Type="@bladeInfo.Type"
-                           Order="@bladeInfo.Order"
-                           Title=@bladeInfo.Title
-                           SubTitle="@bladeInfo.SubTitle"
-                           HeaderButtons="@bladeInfo.HeaderButtons"
-                           Icon="@bladeInfo.Icon"
-                           IconPath="@bladeInfo.IconPath"
-                           SaveButtonPath="@bladeInfo.SaveButtonPath"
-                           DeleteThisBlade="@DeleteThisBlade"
-                           ReFreshRequested="@ReFreshRequested">
-                        @*<TopCommandBars>
-                        @bladeInfo.CommandBars
-                    </TopCommandBars>*@
-                        <Content>
-                            @*@bladeInfo.Content*@
-                            <button type="button" class="btn btn-primary" @onclick="UpdateHeading">
-                                Update heading
-                            </button>
-                            <p>
-                                <h4>The Id of this Blade is @bladeInfo.Id</h4>
-                            </p>
-                            <CommandBar>
-                                @*<button class="blade-command-bar-element-button" id="Add" @onclick="() => AddBladeAsync.InvokeAsync(this.BladeTypeToAdd)">➕</button>*@
-                                <CommandBarButton ButtonLable="Save" Id="SaveID" OnClickEvent=" async () => await AddBladeAsync(typeof(CalibrationCase).FullName)"></CommandBarButton>
-                                <button class="blade-command-bar-element-button" id="Add" @onclick="AddBlade">➕</button>
-                            </CommandBar>
-                        </Content>
-                    </Blade>
-                }
-            }
-        </Content>
+@using BlazorRades
 
-    </BladeContainer>
-</div>
+    <div class="blade-content">
+        <h3>BladeDemo</h3>
+        <br />
+        <h4>@messageText</h4>
+        <div class="flex-container">
+            <div style="position:relative;flex-grow: 1">
+                <BladeContainer BladeInfos="@bladeInfos">
+                    <Content>
+                        @foreach (var bladeInfo in bladeInfos.OrderBy(bi => bi.Order))
+                        {
+                            if (bladeInfo.Type == typeof(ProcedureAndScoring))
+                            {
+                                <ProcedureAndScoring BladeInfos="@bladeInfos"
+                                                     Icon="🤴"
+                                                     SubTitle="@bladeInfo.SubTitle"
+                                                     Id="@bladeInfo.Id"
+                                                     Type="@bladeInfo.Type"
+                                                     Order="@bladeInfo.Order"
+                                                     DeleteThisBlade="@DeleteThisBlade">
+                                </ProcedureAndScoring>
+                            }
+                            else if (bladeInfo.Type == typeof(CalibrationCasesList))
+                            {
+                                <CalibrationCasesList BladeInfos="@bladeInfos"
+                                                      Icon="🤴"
+                                                      SubTitle="Rate it!! bro"
+                                                      Id="@bladeInfo.Id"
+                                                      Type="@bladeInfo.Type"
+                                                      Order="@bladeInfo.Order"
+                                                      DeleteThisBlade="@DeleteThisBlade"
+                                                      AddBladeWithId="@AddBladeWithIdAsync">
+                                </CalibrationCasesList>
+                            }
+                            else if (bladeInfo.Type == typeof(CalibrationCase))
+                            {
+                                <CalibrationCase BladeInfos="@bladeInfos"
+                                                 Icon="🤴"
+                                                 SubTitle="Rate it 2 bro !!"
+                                                 Id="@bladeInfo.Id"
+                                                 Type="@bladeInfo.Type"
+                                                 Order="@bladeInfo.Order"
+                                                 DeleteThisBlade="@DeleteThisBlade"
+                                                 AddBladeWithId="@AddBladeWithIdAsync"
+                                                 Parameters="@bladeInfo.Parameters">
+                                </CalibrationCase>
+                            }
+                            else
+                            {
+                                <Blade BladeInfos="@bladeInfos"
+                                       Id="@bladeInfo.Id"
+                                       Type="@bladeInfo.Type"
+                                       Order="@bladeInfo.Order"
+                                       Title=@bladeInfo.Title
+                                       SubTitle="@bladeInfo.SubTitle"
+                                       HeaderButtons="@bladeInfo.HeaderButtons"
+                                       Icon="@bladeInfo.Icon"
+                                       IconPath="@bladeInfo.IconPath"
+                                       SaveButtonPath="@bladeInfo.SaveButtonPath"
+                                       DeleteThisBlade="@DeleteThisBlade"
+                                       ReFreshRequested="@ReFreshRequested">
+                                    <Content>
+                                        @*@bladeInfo.Content*@
+                                        <button type="button" class="btn btn-primary" @onclick="UpdateHeading">
+                                            Update heading
+                                        </button>
+                                        <p>
+                                            <h4>The Id of this Blade is @bladeInfo.Id</h4>
+                                        </p>
+                                        <CommandBar>
+                                            @*<button class="blade-command-bar-element-button" id="Add" @onclick="() => AddBladeAsync.InvokeAsync(this.BladeTypeToAdd)">➕</button>*@
+                                            <CommandBarButton ButtonLable="Save" Id="SaveID" OnClickEvent=" async () => await AddBladeAsync(typeof(CalibrationCase).FullName)"></CommandBarButton>
+                                            <button class="blade-command-bar-element-button" id="Add" @onclick="AddBlade">➕</button>
+                                        </CommandBar>
+                                    </Content>
+                                </Blade>
+                            }
+                        }
+                    </Content>
+
+                </BladeContainer>
+            </div>
+        </div>
     </div>
+
 
 @code  {
     List<BladeInfo> bladeInfos;
